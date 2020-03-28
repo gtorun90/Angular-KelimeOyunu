@@ -12,8 +12,9 @@ app.use(cors())
 
 app.use(bodyParser.json())
 
-const port = process.env.PORT || 8080
+app.use(express.static(path.join(__dirname, 'public')));
 
+const port = process.env.PORT || 8080
 mongoose.connect('mongodb+srv://gokhan:4791181gs@kelimeoyunu-ujxwd.mongodb.net/kelime_oyunu?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true},()=>{
     try {
       console.log('Connected to Db')
@@ -24,5 +25,7 @@ mongoose.connect('mongodb+srv://gokhan:4791181gs@kelimeoyunu-ujxwd.mongodb.net/k
 
 app.use('/home',home.router)
 app.use('/user',user.router)
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 app.listen(port);
