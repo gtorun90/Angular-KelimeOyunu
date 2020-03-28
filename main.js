@@ -1,0 +1,28 @@
+var express = require('express')
+var mongoose = require('mongoose')
+var bodyParser = require('body-parser')
+var cors = require('cors')
+
+var home = require('./services/homeService')
+var user = require('./services/userService')
+
+var app = express()
+
+app.use(cors())
+
+app.use(bodyParser.json())
+
+const port = process.env.PORT || 8080
+
+mongoose.connect('mongodb+srv://gokhan:4791181gs@kelimeoyunu-ujxwd.mongodb.net/kelime_oyunu?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true},()=>{
+    try {
+      console.log('Connected to Db')
+    }catch(error){
+      console.log(error);           
+    }
+})
+
+app.use('/home',home.router)
+app.use('/user',user.router)
+
+app.listen(port);
