@@ -11,7 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptorService } from "./services/auth-interceptor.service";
 import { GameComponent } from './components/game/game.component';
 import { SoruBankasiComponent } from './components/soru-bankasi/soru-bankasi.component';
-
+// import {AuthGuard} from "./guards/auth.guard"
 var routes = [
   {path:"",component:GameComponent,pathMatch:"full"},
   {path:"home",component:GameComponent},
@@ -25,7 +25,9 @@ var routes = [
       AppComponent, 
       HarfComponent, 
       LoginComponent, 
-      RegisterComponent, GameComponent, SoruBankasiComponent
+      RegisterComponent, 
+      GameComponent, 
+      SoruBankasiComponent
   ],
   imports: [
      BrowserModule, 
