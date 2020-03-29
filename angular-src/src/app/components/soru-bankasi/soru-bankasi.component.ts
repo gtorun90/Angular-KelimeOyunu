@@ -12,9 +12,6 @@ export class SoruBankasiComponent {
   constructor(private soruBankasiService:SoruBankasiService) { }
   soruBankasi:any = {}
 
-  getQuestions(){
-    this.soruBankasiService.getQuestions()
-  }
   saveQuestion(soruBankasi:SoruBankasi){
     console.log(soruBankasi)
     soruBankasi.soruldu = false

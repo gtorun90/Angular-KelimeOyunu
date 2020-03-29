@@ -253,13 +253,12 @@ let GameComponent = class GameComponent {
         this.toplamSure = null;
         this.kalanSure = 0;
         this.toplamKalanSure = 0;
-        this.sorulariGetir().subscribe(data => {
-            this.sorular = data;
-            //this.sorular.sort((a,b)=>(a.cevapHarfSayisi > b.cevapHarfSayisi) ? 1 : (a.cevapHarfSayisi === b.cevapHarfSayisi) ? 1 : -1);
-        }, error => console.log(error));
+        this.sorulariGetir();
     }
     sorulariGetir() {
-        return this.soruBankasiService.getQuestions();
+        return this.soruBankasiService.getQuestions().subscribe(data => {
+            this.sorular = data;
+        }, error => console.log(error));
     }
     mesajGoster(mesaj, tur = null) {
         if (this.mesajSure) {
@@ -324,7 +323,8 @@ let GameComponent = class GameComponent {
         this.yarismaciCevap = "";
         this.cevaplandi = false;
         this.mevcutSoru = this.sorular.find(x => x.soruldu == false);
-        if (this.harfler.filter(x => x.acildi).length > 0 && this.harfler.filter(x => x.acildi).length === this.harfler.length) {
+        if (this.harfler.filter(x => x.acildi).length > 0 &&
+            this.harfler.filter(x => x.acildi).length === this.harfler.length) {
             clearInterval(this.sure);
         }
         if (!this.mevcutSoru) {
@@ -400,7 +400,7 @@ GameComponent.ctorParameters = () => [
 ];
 GameComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-game',
+        selector: "app-game",
         template: __webpack_require__(/*! raw-loader!./game.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/game/game.component.html"),
         styles: [__webpack_require__(/*! ./game.component.scss */ "./src/app/components/game/game.component.scss")]
     })
@@ -620,9 +620,6 @@ let SoruBankasiComponent = class SoruBankasiComponent {
     constructor(soruBankasiService) {
         this.soruBankasiService = soruBankasiService;
         this.soruBankasi = {};
-    }
-    getQuestions() {
-        this.soruBankasiService.getQuestions();
     }
     saveQuestion(soruBankasi) {
         console.log(soruBankasi);

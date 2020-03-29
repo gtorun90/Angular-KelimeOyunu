@@ -244,7 +244,6 @@ __webpack_require__.r(__webpack_exports__);
 var GameComponent = /** @class */ (function () {
     // apiUrl="https://localhost:44341/api/SoruCevaps";
     function GameComponent(soruBankasiService) {
-        var _this = this;
         this.soruBankasiService = soruBankasiService;
         this.mesaj = null;
         this.mesajClass = "";
@@ -260,13 +259,13 @@ var GameComponent = /** @class */ (function () {
         this.toplamSure = null;
         this.kalanSure = 0;
         this.toplamKalanSure = 0;
-        this.sorulariGetir().subscribe(function (data) {
-            _this.sorular = data;
-            //this.sorular.sort((a,b)=>(a.cevapHarfSayisi > b.cevapHarfSayisi) ? 1 : (a.cevapHarfSayisi === b.cevapHarfSayisi) ? 1 : -1);
-        }, function (error) { return console.log(error); });
+        this.sorulariGetir();
     }
     GameComponent.prototype.sorulariGetir = function () {
-        return this.soruBankasiService.getQuestions();
+        var _this = this;
+        return this.soruBankasiService.getQuestions().subscribe(function (data) {
+            _this.sorular = data;
+        }, function (error) { return console.log(error); });
     };
     GameComponent.prototype.mesajGoster = function (mesaj, tur) {
         var _this = this;
@@ -336,7 +335,8 @@ var GameComponent = /** @class */ (function () {
         this.yarismaciCevap = "";
         this.cevaplandi = false;
         this.mevcutSoru = this.sorular.find(function (x) { return x.soruldu == false; });
-        if (this.harfler.filter(function (x) { return x.acildi; }).length > 0 && this.harfler.filter(function (x) { return x.acildi; }).length === this.harfler.length) {
+        if (this.harfler.filter(function (x) { return x.acildi; }).length > 0 &&
+            this.harfler.filter(function (x) { return x.acildi; }).length === this.harfler.length) {
             clearInterval(this.sure);
         }
         if (!this.mevcutSoru) {
@@ -412,7 +412,7 @@ var GameComponent = /** @class */ (function () {
     ]; };
     GameComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-game',
+            selector: "app-game",
             template: __webpack_require__(/*! raw-loader!./game.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/game/game.component.html"),
             styles: [__webpack_require__(/*! ./game.component.scss */ "./src/app/components/game/game.component.scss")]
         })
@@ -638,9 +638,6 @@ var SoruBankasiComponent = /** @class */ (function () {
         this.soruBankasiService = soruBankasiService;
         this.soruBankasi = {};
     }
-    SoruBankasiComponent.prototype.getQuestions = function () {
-        this.soruBankasiService.getQuestions();
-    };
     SoruBankasiComponent.prototype.saveQuestion = function (soruBankasi) {
         console.log(soruBankasi);
         soruBankasi.soruldu = false;

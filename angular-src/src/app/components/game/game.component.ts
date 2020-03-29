@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
-import { SoruBankasi } from '../soru-bankasi/soruBankasi';
-import { error } from 'protractor';
-import { SoruBankasiService } from 'src/app/services/soru-bankasi.service';
-
+import { Component } from "@angular/core";
+import { SoruBankasi } from "../soru-bankasi/soruBankasi";
+import { error } from "protractor";
+import { SoruBankasiService } from "src/app/services/soru-bankasi.service";
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  selector: "app-game",
+  templateUrl: "./game.component.html",
+  styleUrls: ["./game.component.scss"]
 })
-export class GameComponent{
-  sorular: SoruBankasi[] ;
+export class GameComponent {
+  sorular: SoruBankasi[];
   mesaj: string = null;
   mesajClass: string = "";
   mesajSure: any = null;
@@ -20,22 +19,23 @@ export class GameComponent{
   harfPuan: number = 0;
   yarismaciCevap: string = "";
   tamamlandi: boolean = false;
-  cevaplandi:boolean = false;
+  cevaplandi: boolean = false;
   sure: any = null;
-  toplamSure:any = null;
+  toplamSure: any = null;
   kalanSure: number = 0;
   toplamKalanSure: number = 0;
- // apiUrl="https://localhost:44341/api/SoruCevaps";
-  constructor(private soruBankasiService:SoruBankasiService) {
-    this.sorulariGetir().subscribe(data => {
-         this.sorular = data;
-         //this.sorular.sort((a,b)=>(a.cevapHarfSayisi > b.cevapHarfSayisi) ? 1 : (a.cevapHarfSayisi === b.cevapHarfSayisi) ? 1 : -1);
-      },error => console.log(error)
-    )
+  // apiUrl="https://localhost:44341/api/SoruCevaps";
+  constructor(private soruBankasiService: SoruBankasiService) {
+    this.sorulariGetir();
   }
 
-  sorulariGetir(){
-    return this.soruBankasiService.getQuestions();
+  sorulariGetir() {
+    return this.soruBankasiService.getQuestions().subscribe(
+      data => {
+        this.sorular = data;
+      },
+      error => console.log(error)
+    );
   }
 
   mesajGoster(mesaj: string, tur: MesajTurleri = null): void {
@@ -54,7 +54,7 @@ export class GameComponent{
     } else {
       this.mesajClass = "bg-dark text-white";
     }
-    if(stopInterVal){
+    if (stopInterVal) {
       clearInterval(this.sure);
     }
     this.mesajSure = setTimeout(() => {
@@ -72,24 +72,23 @@ export class GameComponent{
     this.soruVer();
     this.mesajGoster("İyi yarışmalar!");
   }
-  toplamSureGoster(){
+  toplamSureGoster() {
     this.toplamKalanSure = 300;
     this.toplamSure = setInterval(() => {
       this.toplamKalanSure--;
-      if(this.toplamKalanSure === 0){
+      if (this.toplamKalanSure === 0) {
         this.bitir();
       }
-    },1000);
+    }, 1000);
   }
-  cevapSureGoster(){
+  cevapSureGoster() {
     this.kalanSure = 30;
     this.sure = setInterval(() => {
-      this.kalanSure--;   
+      this.kalanSure--;
       if (this.kalanSure === 0) {
         this.bitir();
       }
     }, 1000);
-
   }
   bitir(): void {
     clearInterval(this.sure);
@@ -100,13 +99,16 @@ export class GameComponent{
     this.yarismaciCevap = "";
     this.cevaplandi = false;
     this.mevcutSoru = this.sorular.find(x => x.soruldu == false);
-    if(this.harfler.filter(x=>x.acildi).length > 0 && this.harfler.filter(x=>x.acildi).length === this.harfler.length){
+    if (
+      this.harfler.filter(x => x.acildi).length > 0 &&
+      this.harfler.filter(x => x.acildi).length === this.harfler.length
+    ) {
       clearInterval(this.sure);
     }
     if (!this.mevcutSoru) {
       this.bitir();
       return;
-    } 
+    }
     this.cevapSureGoster();
     this.harfler = [];
     this.mevcutSoru.cevap.split("").map(x => {
@@ -118,7 +120,7 @@ export class GameComponent{
     this.harfPuan = this.harfler.length * 100;
     this.mevcutSoru.soruldu = true;
   }
-  harfVer(cevaplandi:boolean): void {
+  harfVer(cevaplandi: boolean): void {
     let rastgeleHarfIndex = Math.floor(Math.random() * this.harfler.length);
 
     if (!cevaplandi && this.harfPuan <= 100) {
@@ -131,7 +133,7 @@ export class GameComponent{
       harf = this.harfler[rastgeleHarfIndex];
     }
     harf.acildi = true;
-    if(!cevaplandi){
+    if (!cevaplandi) {
       this.harfPuan -= 100;
     }
   }
@@ -148,18 +150,18 @@ export class GameComponent{
       "tr-TR"
     ) as string;
     this.yarismaciCevap = cevap;
- 
+
     if (
       this.yarismaciCevap ===
       ((this.mevcutSoru.cevap as any).toLocaleUpperCase("tr-TR") as string)
     ) {
       this.puan += this.harfPuan;
       this.cevaplandi = true;
-      this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);    
+      this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);
     } else {
-      if(this.puan >= this.harfPuan){
+      if (this.puan >= this.harfPuan) {
         this.puan -= this.harfPuan;
-      }else{
+      } else {
         this.puan = 0;
       }
       this.cevaplandi = true;
@@ -169,12 +171,11 @@ export class GameComponent{
       );
     }
 
-    this.harfler.forEach(x=>{
-      if(this.harfler.filter(x=>x.acildi).length !== this.harfler.length){
+    this.harfler.forEach(x => {
+      if (this.harfler.filter(x => x.acildi).length !== this.harfler.length) {
         this.harfVer(this.cevaplandi);
       }
-      
-    })
+    });
 
     //this.soruVer();
   }
@@ -189,4 +190,3 @@ enum MesajTurleri {
 enum Tuslar {
   Enter = "Enter"
 }
-
