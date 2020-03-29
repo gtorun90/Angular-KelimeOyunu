@@ -16,19 +16,12 @@ export class SoruBankasiService {
     let getUrl = "home/index";
     return this.http.get<SoruBankasi[]>(getUrl);
   }
-  saveQuestion(soruBankasi) {
+  saveQuestion(soruBankasi:SoruBankasi):Observable<SoruBankasi> {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
     // let postUrl = this.path + 'home/saveQuestion'
     let postUrl = "home/saveQuestion";
     return this.http
-      .post(postUrl, soruBankasi, { headers: headers })
-      .subscribe(data => {
-        if (data) {
-          alert("Kayıt Başarılı");
-        } else {
-          alert("Bir Hata Oluştu");
-        }
-      });
+      .post<SoruBankasi>(postUrl, soruBankasi, { headers: headers })
   }
 }
