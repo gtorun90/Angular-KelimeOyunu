@@ -531,7 +531,11 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.login = function (loginUser) {
-        this.authService.login(loginUser);
+        var _this = this;
+        this.authService.login(loginUser).subscribe(function (data) {
+            _this.authService.saveToken(data["token"]);
+            console.log(data["token"]);
+        });
     };
     LoginComponent.ctorParameters = function () { return [
         { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] }
@@ -583,17 +587,18 @@ var RegisterComponent = /** @class */ (function () {
         this.authService = authService;
         this.registerUser = {};
     }
-    RegisterComponent.prototype.ngOnInit = function () {
-    };
+    RegisterComponent.prototype.ngOnInit = function () { };
     RegisterComponent.prototype.register = function (registerUser) {
-        this.authService.register(registerUser);
+        this.authService.register(registerUser).subscribe(function (data) {
+            console.log(data);
+        });
     };
     RegisterComponent.ctorParameters = function () { return [
         { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] }
     ]; };
     RegisterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-register',
+            selector: "app-register",
             template: __webpack_require__(/*! raw-loader!./register.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/register/register.component.html"),
             providers: [src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]],
             styles: [__webpack_require__(/*! ./register.component.scss */ "./src/app/components/register/register.component.scss")]
@@ -641,20 +646,27 @@ var SoruBankasiComponent = /** @class */ (function () {
     SoruBankasiComponent.prototype.saveQuestion = function (soruBankasi) {
         console.log(soruBankasi);
         soruBankasi.soruldu = false;
-        this.soruBankasiService.saveQuestion(soruBankasi);
+        this.soruBankasiService.saveQuestion(soruBankasi).subscribe(function (data) {
+            if (data) {
+                alert("Kayıt Başarılı");
+            }
+            else {
+                alert("Bir Hata Oluştu");
+            }
+        });
         this.clearSoruBankasi(soruBankasi);
     };
     SoruBankasiComponent.prototype.clearSoruBankasi = function (soruBankasi) {
-        soruBankasi.cevap = '';
-        soruBankasi.cevapharfsayisi = '';
-        soruBankasi.soru = '';
+        soruBankasi.cevap = "";
+        soruBankasi.cevapharfsayisi = "";
+        soruBankasi.soru = "";
     };
     SoruBankasiComponent.ctorParameters = function () { return [
         { type: src_app_services_soru_bankasi_service__WEBPACK_IMPORTED_MODULE_2__["SoruBankasiService"] }
     ]; };
     SoruBankasiComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-soru-bankasi',
+            selector: "app-soru-bankasi",
             template: __webpack_require__(/*! raw-loader!./soru-bankasi.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/soru-bankasi/soru-bankasi.component.html"),
             styles: [__webpack_require__(/*! ./soru-bankasi.component.scss */ "./src/app/components/soru-bankasi/soru-bankasi.component.scss")]
         })
@@ -739,23 +751,17 @@ var AuthService = /** @class */ (function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers = headers.append("Content-Type", "application/json");
         // let postUrl = this.path + 'user/register'
-        var postUrl = 'user/register';
-        return this.http.post(postUrl, registerUser, { headers: headers })
-            .subscribe(function (data) {
-            console.log(data);
+        var postUrl = "user/register";
+        return this.http.post(postUrl, registerUser, {
+            headers: headers
         });
     };
     AuthService.prototype.login = function (loginUser) {
-        var _this = this;
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers = headers.append("Content-Type", "application/json");
         // let getUrl = this.path + 'user/login'
-        var getUrl = 'user/login';
-        return this.http.post(getUrl, loginUser, { headers: headers })
-            .subscribe(function (data) {
-            _this.saveToken(data['token']);
-            console.log(data['token']);
-        });
+        var getUrl = "user/login";
+        return this.http.post(getUrl, loginUser, { headers: headers });
     };
     AuthService.prototype.saveToken = function (token) {
         localStorage.setItem(this.TOKEN_KEY, token);
@@ -785,7 +791,7 @@ var AuthService = /** @class */ (function () {
     ]; };
     AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
+            providedIn: "root"
         })
     ], AuthService);
     return AuthService;
@@ -829,15 +835,7 @@ var SoruBankasiService = /** @class */ (function () {
         // let postUrl = this.path + 'home/saveQuestion'
         var postUrl = "home/saveQuestion";
         return this.http
-            .post(postUrl, soruBankasi, { headers: headers })
-            .subscribe(function (data) {
-            if (data) {
-                alert("Kayıt Başarılı");
-            }
-            else {
-                alert("Bir Hata Oluştu");
-            }
-        });
+            .post(postUrl, soruBankasi, { headers: headers });
     };
     SoruBankasiService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }

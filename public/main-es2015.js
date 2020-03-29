@@ -516,7 +516,10 @@ let LoginComponent = class LoginComponent {
     ngOnInit() {
     }
     login(loginUser) {
-        this.authService.login(loginUser);
+        this.authService.login(loginUser).subscribe(data => {
+            this.authService.saveToken(data["token"]);
+            console.log(data["token"]);
+        });
     }
 };
 LoginComponent.ctorParameters = () => [
@@ -567,10 +570,11 @@ let RegisterComponent = class RegisterComponent {
         this.authService = authService;
         this.registerUser = {};
     }
-    ngOnInit() {
-    }
+    ngOnInit() { }
     register(registerUser) {
-        this.authService.register(registerUser);
+        this.authService.register(registerUser).subscribe(data => {
+            console.log(data);
+        });
     }
 };
 RegisterComponent.ctorParameters = () => [
@@ -578,7 +582,7 @@ RegisterComponent.ctorParameters = () => [
 ];
 RegisterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-register',
+        selector: "app-register",
         template: __webpack_require__(/*! raw-loader!./register.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/register/register.component.html"),
         providers: [src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]],
         styles: [__webpack_require__(/*! ./register.component.scss */ "./src/app/components/register/register.component.scss")]
@@ -624,13 +628,20 @@ let SoruBankasiComponent = class SoruBankasiComponent {
     saveQuestion(soruBankasi) {
         console.log(soruBankasi);
         soruBankasi.soruldu = false;
-        this.soruBankasiService.saveQuestion(soruBankasi);
+        this.soruBankasiService.saveQuestion(soruBankasi).subscribe(data => {
+            if (data) {
+                alert("Kayıt Başarılı");
+            }
+            else {
+                alert("Bir Hata Oluştu");
+            }
+        });
         this.clearSoruBankasi(soruBankasi);
     }
     clearSoruBankasi(soruBankasi) {
-        soruBankasi.cevap = '';
-        soruBankasi.cevapharfsayisi = '';
-        soruBankasi.soru = '';
+        soruBankasi.cevap = "";
+        soruBankasi.cevapharfsayisi = "";
+        soruBankasi.soru = "";
     }
 };
 SoruBankasiComponent.ctorParameters = () => [
@@ -638,7 +649,7 @@ SoruBankasiComponent.ctorParameters = () => [
 ];
 SoruBankasiComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-soru-bankasi',
+        selector: "app-soru-bankasi",
         template: __webpack_require__(/*! raw-loader!./soru-bankasi.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/soru-bankasi/soru-bankasi.component.html"),
         styles: [__webpack_require__(/*! ./soru-bankasi.component.scss */ "./src/app/components/soru-bankasi/soru-bankasi.component.scss")]
     })
@@ -720,22 +731,17 @@ let AuthService = class AuthService {
         let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers = headers.append("Content-Type", "application/json");
         // let postUrl = this.path + 'user/register'
-        let postUrl = 'user/register';
-        return this.http.post(postUrl, registerUser, { headers: headers })
-            .subscribe(data => {
-            console.log(data);
+        let postUrl = "user/register";
+        return this.http.post(postUrl, registerUser, {
+            headers: headers
         });
     }
     login(loginUser) {
         let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers = headers.append("Content-Type", "application/json");
         // let getUrl = this.path + 'user/login'
-        let getUrl = 'user/login';
-        return this.http.post(getUrl, loginUser, { headers: headers })
-            .subscribe(data => {
-            this.saveToken(data['token']);
-            console.log(data['token']);
-        });
+        let getUrl = "user/login";
+        return this.http.post(getUrl, loginUser, { headers: headers });
     }
     saveToken(token) {
         localStorage.setItem(this.TOKEN_KEY, token);
@@ -758,7 +764,7 @@ AuthService.ctorParameters = () => [
 ];
 AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: "root"
     })
 ], AuthService);
 
@@ -800,15 +806,7 @@ let SoruBankasiService = class SoruBankasiService {
         // let postUrl = this.path + 'home/saveQuestion'
         let postUrl = "home/saveQuestion";
         return this.http
-            .post(postUrl, soruBankasi, { headers: headers })
-            .subscribe(data => {
-            if (data) {
-                alert("Kayıt Başarılı");
-            }
-            else {
-                alert("Bir Hata Oluştu");
-            }
-        });
+            .post(postUrl, soruBankasi, { headers: headers });
     }
 };
 SoruBankasiService.ctorParameters = () => [
