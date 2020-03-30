@@ -332,7 +332,6 @@ var GameComponent = /** @class */ (function () {
         clearInterval(this.sure);
         this.mevcutSoru = null;
         this.tamamlandi = true;
-        this.sorulariGetir();
     };
     GameComponent.prototype.soruVer = function () {
         var _this = this;
@@ -391,19 +390,18 @@ var GameComponent = /** @class */ (function () {
                 this.cevaplandi = true;
                 this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);
             }
-            else {
-                return;
-            }
         }
         else {
-            if (this.puan >= this.harfPuan) {
-                this.puan -= this.harfPuan;
+            if (!this.cevaplandi) {
+                if (this.puan >= this.harfPuan) {
+                    this.puan -= this.harfPuan;
+                }
+                else {
+                    this.puan = 0;
+                }
+                this.cevaplandi = true;
+                this.mesajGoster("Yanl\u0131\u015F cevap, do\u011Frusu '" + this.mevcutSoru.cevap + "' olmal\u0131yd\u0131!", MesajTurleri.hata);
             }
-            else {
-                this.puan = 0;
-            }
-            this.cevaplandi = true;
-            this.mesajGoster("Yanl\u0131\u015F cevap, do\u011Frusu '" + this.mevcutSoru.cevap + "' olmal\u0131yd\u0131!", MesajTurleri.hata);
         }
         this.harfler.forEach(function (x) {
             if (_this.harfler.filter(function (x) { return x.acildi; }).length !== _this.harfler.length) {

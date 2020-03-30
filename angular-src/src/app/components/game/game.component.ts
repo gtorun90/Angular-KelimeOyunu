@@ -94,7 +94,6 @@ export class GameComponent {
     clearInterval(this.sure);
     this.mevcutSoru = null;
     this.tamamlandi = true;
-    this.sorulariGetir();
   }
   soruVer(): void {
     this.yarismaciCevap = "";
@@ -160,20 +159,20 @@ export class GameComponent {
         this.puan += this.harfPuan;
         this.cevaplandi = true;
         this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);
-      } else {
-        return;
       }
     } else {
-      if (this.puan >= this.harfPuan) {
-        this.puan -= this.harfPuan;
-      } else {
-        this.puan = 0;
+      if (!this.cevaplandi) {
+        if (this.puan >= this.harfPuan) {
+          this.puan -= this.harfPuan;
+        } else {
+          this.puan = 0;
+        }
+        this.cevaplandi = true;
+        this.mesajGoster(
+          `Yanlış cevap, doğrusu '${this.mevcutSoru.cevap}' olmalıydı!`,
+          MesajTurleri.hata
+        );
       }
-      this.cevaplandi = true;
-      this.mesajGoster(
-        `Yanlış cevap, doğrusu '${this.mevcutSoru.cevap}' olmalıydı!`,
-        MesajTurleri.hata
-      );
     }
 
     this.harfler.forEach(x => {
