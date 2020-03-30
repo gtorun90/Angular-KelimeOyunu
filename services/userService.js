@@ -3,11 +3,11 @@ var router = express.Router()
 var jwt = require('jwt-simple')
 var User = require('../models/user')
 
-router.get('/list',async (req,res)=>{
-    var users = await User.find({},'-__v')
-    res.send(users)  
-    console.log(users)
-})
+// router.get('/list',async (req,res)=>{
+//     var users = await User.find({},'-__v')
+//     res.send(users)  
+//     console.log(users)
+// })
 
 router.post('/register',(req,res)=>{
     var userData = req.body
