@@ -25,8 +25,8 @@ export class AuthService {
   login(loginUser: LoginUser): Observable<LoginUser> {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
-    let getUrl = this.path + "user/login";
-    //let getUrl = "user/login";
+    // let getUrl = this.path + "user/login";
+    let getUrl = "user/login";
     return this.http.post<LoginUser>(getUrl, loginUser, { headers: headers });
   }
 

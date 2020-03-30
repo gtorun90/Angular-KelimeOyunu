@@ -792,8 +792,8 @@ let AuthService = class AuthService {
     login(loginUser) {
         let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers = headers.append("Content-Type", "application/json");
-        let getUrl = this.path + "user/login";
-        //let getUrl = "user/login";
+        // let getUrl = this.path + "user/login";
+        let getUrl = "user/login";
         return this.http.post(getUrl, loginUser, { headers: headers });
     }
     saveToken(token) {
@@ -849,15 +849,15 @@ let SoruBankasiService = class SoruBankasiService {
         this.path = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].path;
     }
     getQuestions() {
-        let getUrl = this.path + "game/index";
-        //let getUrl = "game/index";
+        //let getUrl = this.path + "game/index";
+        let getUrl = "game/index";
         return this.http.get(getUrl);
     }
     saveQuestion(soruBankasi) {
         let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers = headers.append("Content-Type", "application/json");
-        let postUrl = this.path + "game/saveQuestion";
-        // let postUrl = "game/saveQuestion";
+        //let postUrl = this.path + "game/saveQuestion";
+        let postUrl = "game/saveQuestion";
         return this.http.post(postUrl, soruBankasi, {
             headers: headers
         });

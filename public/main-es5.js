@@ -815,8 +815,8 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.login = function (loginUser) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers = headers.append("Content-Type", "application/json");
-        var getUrl = this.path + "user/login";
-        //let getUrl = "user/login";
+        // let getUrl = this.path + "user/login";
+        var getUrl = "user/login";
         return this.http.post(getUrl, loginUser, { headers: headers });
     };
     AuthService.prototype.saveToken = function (token) {
@@ -881,15 +881,15 @@ var SoruBankasiService = /** @class */ (function () {
         this.path = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].path;
     }
     SoruBankasiService.prototype.getQuestions = function () {
-        var getUrl = this.path + "game/index";
-        //let getUrl = "game/index";
+        //let getUrl = this.path + "game/index";
+        var getUrl = "game/index";
         return this.http.get(getUrl);
     };
     SoruBankasiService.prototype.saveQuestion = function (soruBankasi) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers = headers.append("Content-Type", "application/json");
-        var postUrl = this.path + "game/saveQuestion";
-        // let postUrl = "game/saveQuestion";
+        //let postUrl = this.path + "game/saveQuestion";
+        var postUrl = "game/saveQuestion";
         return this.http.post(postUrl, soruBankasi, {
             headers: headers
         });
