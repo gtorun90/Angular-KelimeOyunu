@@ -94,6 +94,7 @@ export class GameComponent {
     clearInterval(this.sure);
     this.mevcutSoru = null;
     this.tamamlandi = true;
+    this.sorulariGetir();
   }
   soruVer(): void {
     this.yarismaciCevap = "";
@@ -155,9 +156,13 @@ export class GameComponent {
       this.yarismaciCevap ===
       ((this.mevcutSoru.cevap as any).toLocaleUpperCase("tr-TR") as string)
     ) {
-      this.puan += this.harfPuan;
-      this.cevaplandi = true;
-      this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);
+      if (!this.cevaplandi) {
+        this.puan += this.harfPuan;
+        this.cevaplandi = true;
+        this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);
+      } else {
+        return;
+      }
     } else {
       if (this.puan >= this.harfPuan) {
         this.puan -= this.harfPuan;

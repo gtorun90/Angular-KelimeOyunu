@@ -332,6 +332,7 @@ var GameComponent = /** @class */ (function () {
         clearInterval(this.sure);
         this.mevcutSoru = null;
         this.tamamlandi = true;
+        this.sorulariGetir();
     };
     GameComponent.prototype.soruVer = function () {
         var _this = this;
@@ -385,9 +386,14 @@ var GameComponent = /** @class */ (function () {
         this.yarismaciCevap = cevap;
         if (this.yarismaciCevap ===
             this.mevcutSoru.cevap.toLocaleUpperCase("tr-TR")) {
-            this.puan += this.harfPuan;
-            this.cevaplandi = true;
-            this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);
+            if (!this.cevaplandi) {
+                this.puan += this.harfPuan;
+                this.cevaplandi = true;
+                this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);
+            }
+            else {
+                return;
+            }
         }
         else {
             if (this.puan >= this.harfPuan) {

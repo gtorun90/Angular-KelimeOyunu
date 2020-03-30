@@ -321,6 +321,7 @@ let GameComponent = class GameComponent {
         clearInterval(this.sure);
         this.mevcutSoru = null;
         this.tamamlandi = true;
+        this.sorulariGetir();
     }
     soruVer() {
         this.yarismaciCevap = "";
@@ -372,9 +373,14 @@ let GameComponent = class GameComponent {
         this.yarismaciCevap = cevap;
         if (this.yarismaciCevap ===
             this.mevcutSoru.cevap.toLocaleUpperCase("tr-TR")) {
-            this.puan += this.harfPuan;
-            this.cevaplandi = true;
-            this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);
+            if (!this.cevaplandi) {
+                this.puan += this.harfPuan;
+                this.cevaplandi = true;
+                this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);
+            }
+            else {
+                return;
+            }
         }
         else {
             if (this.puan >= this.harfPuan) {
