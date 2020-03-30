@@ -260,7 +260,7 @@ let GameComponent = class GameComponent {
     sorulariGetir() {
         return this.soruBankasiService.getQuestions().subscribe(data => {
             this.sorular = data;
-        }, error => { });
+        }, error => console.log(error));
     }
     mesajGoster(mesaj, tur = null) {
         if (this.mesajSure) {
@@ -291,11 +291,15 @@ let GameComponent = class GameComponent {
         this.tamamlandi = false;
         this.mevcutSoru = null;
         this.puan = 0;
-        this.sorulariGetir();
-        this.toplamSureGoster();
-        this.sorular.map(x => {
-            x.soruldu = false;
+        var promise = new Promise(function (resolve, reject) {
+            this.sorulariGetir();
         });
+        promise.then(function () {
+            this.sorular.map(x => {
+                x.soruldu = false;
+            });
+        }).then(this.soruVer);
+        this.toplamSureGoster();
         this.mesajGoster("İyi yarışmalar!");
     }
     toplamSureGoster() {

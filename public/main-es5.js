@@ -267,7 +267,7 @@ var GameComponent = /** @class */ (function () {
         var _this = this;
         return this.soruBankasiService.getQuestions().subscribe(function (data) {
             _this.sorular = data;
-        }, function (error) { });
+        }, function (error) { return console.log(error); });
     };
     GameComponent.prototype.mesajGoster = function (mesaj, tur) {
         var _this = this;
@@ -300,11 +300,15 @@ var GameComponent = /** @class */ (function () {
         this.tamamlandi = false;
         this.mevcutSoru = null;
         this.puan = 0;
-        this.sorulariGetir();
-        this.toplamSureGoster();
-        this.sorular.map(function (x) {
-            x.soruldu = false;
+        var promise = new Promise(function (resolve, reject) {
+            this.sorulariGetir();
         });
+        promise.then(function () {
+            this.sorular.map(function (x) {
+                x.soruldu = false;
+            });
+        }).then(this.soruVer);
+        this.toplamSureGoster();
         this.mesajGoster("İyi yarışmalar!");
     };
     GameComponent.prototype.toplamSureGoster = function () {

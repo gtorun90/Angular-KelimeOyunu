@@ -33,7 +33,7 @@ export class GameComponent {
       data => {
         this.sorular = data;
       },
-      error => {}
+      error => console.log(error)
     );
   }
 
@@ -63,12 +63,18 @@ export class GameComponent {
   basla(): void {
     this.tamamlandi = false;
     this.mevcutSoru = null;
-    this.puan = 0; 
-    this.sorulariGetir();
+    this.puan = 0;
+    var promise = new Promise(function(resolve,reject){
+      this.sorulariGetir();
+    } );
+    promise.then(function(){
+      this.sorular.map(x => {
+        x.soruldu = false;
+      });
+    }).then(this.soruVer)
     this.toplamSureGoster();
-    this.sorular.map(x => {
-      x.soruldu = false;
-    });
+
+    
     this.mesajGoster("İyi yarışmalar!");
   }
   toplamSureGoster() {
