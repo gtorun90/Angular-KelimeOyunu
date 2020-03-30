@@ -291,14 +291,13 @@ let GameComponent = class GameComponent {
         this.tamamlandi = false;
         this.mevcutSoru = null;
         this.puan = 0;
-        var promise = new Promise(function (resolve, reject) {
-            this.sorulariGetir();
-        });
-        promise.then(function () {
-            this.sorular.map(x => {
+        () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () { return yield this.sorulariGetir(); });
+        () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            return yield this.sorular.map(x => {
                 x.soruldu = false;
             });
-        }).then(this.soruVer);
+        });
+        () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () { return yield this.soruVer(); });
         this.toplamSureGoster();
         this.mesajGoster("İyi yarışmalar!");
     }

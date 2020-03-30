@@ -297,17 +297,32 @@ var GameComponent = /** @class */ (function () {
         }, 3000);
     };
     GameComponent.prototype.basla = function () {
+        var _this = this;
         this.tamamlandi = false;
         this.mevcutSoru = null;
         this.puan = 0;
-        var promise = new Promise(function (resolve, reject) {
-            this.sorulariGetir();
-        });
-        promise.then(function () {
-            this.sorular.map(function (x) {
-                x.soruldu = false;
+        (function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, this.sorulariGetir()];
+                case 1: return [2 /*return*/, _a.sent()];
+            }
+        }); }); });
+        (function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.sorular.map(function (x) {
+                            x.soruldu = false;
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
-        }).then(this.soruVer);
+        }); });
+        (function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, this.soruVer()];
+                case 1: return [2 /*return*/, _a.sent()];
+            }
+        }); }); });
         this.toplamSureGoster();
         this.mesajGoster("İyi yarışmalar!");
     };

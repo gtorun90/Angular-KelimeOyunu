@@ -28,7 +28,7 @@ export class GameComponent {
   constructor(private soruBankasiService: SoruBankasiService) {
   }
 
-  sorulariGetir() {
+  sorulariGetir(){
     return this.soruBankasiService.getQuestions().subscribe(
       data => {
         this.sorular = data;
@@ -64,17 +64,12 @@ export class GameComponent {
     this.tamamlandi = false;
     this.mevcutSoru = null;
     this.puan = 0;
-    var promise = new Promise(function(resolve,reject){
-      this.sorulariGetir();
-    } );
-    promise.then(function(){
-      this.sorular.map(x => {
+    async () => await this.sorulariGetir();
+    async () => await this.sorular.map(x => {
         x.soruldu = false;
       });
-    }).then(this.soruVer)
+    async () => await this.soruVer();
     this.toplamSureGoster();
-
-    
     this.mesajGoster("İyi yarışmalar!");
   }
   toplamSureGoster() {
