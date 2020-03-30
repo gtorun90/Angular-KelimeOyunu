@@ -11,13 +11,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptorService } from "./services/auth-interceptor.service";
 import { GameComponent } from './components/game/game.component';
 import { SoruBankasiComponent } from './components/soru-bankasi/soru-bankasi.component';
+import { AuthGuard } from './guards/auth.guard';
 // import {AuthGuard} from "./guards/auth.guard"
 var routes = [
-  {path:"",component:GameComponent,pathMatch:"full"},
-  {path:"home",component:GameComponent},
+  {path:"",component:LoginComponent,pathMatch:"full"},
+  {path:"game",component:GameComponent,canActivate:[AuthGuard]},
   {path:"login",component:LoginComponent},
-  {path:"register",component:RegisterComponent},
-  {path:"question",component:SoruBankasiComponent}
+  {path:"register",component:RegisterComponent,},
+  {path:"question",component:SoruBankasiComponent,canActivate:[AuthGuard]}
 ]
 
 @NgModule({
@@ -38,6 +39,7 @@ var routes = [
 
   ],
   providers: [
+    AuthGuard,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:AuthInterceptorService,

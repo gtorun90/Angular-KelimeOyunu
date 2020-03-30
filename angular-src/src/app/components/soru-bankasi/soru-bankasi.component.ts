@@ -10,17 +10,17 @@ import { SoruBankasi } from "./soruBankasi";
 export class SoruBankasiComponent {
   constructor(private soruBankasiService: SoruBankasiService) {}
   soruBankasi: any = {};
-
+  mesajTur;
   saveQuestion(soruBankasi: SoruBankasi) {
-    console.log(soruBankasi);
     soruBankasi.soruldu = false;
-    this.soruBankasiService.saveQuestion(soruBankasi).subscribe(data => {
-      if (data) {
-        alert("Kayıt Başarılı");
-      } else {
-        alert("Bir Hata Oluştu");
+    this.soruBankasiService.saveQuestion(soruBankasi).subscribe(
+      data => {
+        this.mesajTur = "success";
+      },
+      error => {
+        this.mesajTur = "error";
       }
-    });
+    );
     this.clearSoruBankasi(soruBankasi);
   }
   clearSoruBankasi(soruBankasi: SoruBankasi) {

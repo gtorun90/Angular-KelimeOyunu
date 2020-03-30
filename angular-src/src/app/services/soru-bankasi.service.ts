@@ -12,16 +12,17 @@ export class SoruBankasiService {
   path = environment.path;
 
   getQuestions(): Observable<SoruBankasi[]> {
-    // let getUrl = this.path + 'home/index'
-    let getUrl = "home/index";
+    let getUrl = this.path + "game/index";
+    //let getUrl = "game/index";
     return this.http.get<SoruBankasi[]>(getUrl);
   }
-  saveQuestion(soruBankasi:SoruBankasi):Observable<SoruBankasi> {
+  saveQuestion(soruBankasi: SoruBankasi): Observable<SoruBankasi> {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
-    // let postUrl = this.path + 'home/saveQuestion'
-    let postUrl = "home/saveQuestion";
-    return this.http
-      .post<SoruBankasi>(postUrl, soruBankasi, { headers: headers })
+    let postUrl = this.path + "game/saveQuestion";
+    // let postUrl = "game/saveQuestion";
+    return this.http.post<SoruBankasi>(postUrl, soruBankasi, {
+      headers: headers
+    });
   }
 }

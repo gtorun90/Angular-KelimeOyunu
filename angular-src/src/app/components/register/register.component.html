@@ -1,21 +1,28 @@
-<div class="container">
-    <form>
-        <div class="form-group">
-            <label>Email address</label>
-            <input type="email" name="email"  [(ngModel)]="registerUser.email" class="form-control" placeholder="E-Mail">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" [(ngModel)]="registerUser.password" class="form-control" name="password"  placeholder="Password">
-        </div>
-        <div class="form-group">
-            <label>First Name</label>
-            <input type="text" [(ngModel)]="registerUser.firstName" class="form-control" name="firstName" placeholder="First Name">
-        </div>
-        <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" [(ngModel)]="registerUser.lastName" class="form-control" name="lastName" placeholder="Last Name">
-        </div>
-        <button type="submit" (click)="register(registerUser)" class="btn btn-primary">Register</button>
-    </form>
-</div>
+<form>
+    <div *ngIf="mesajTur == 'success'" class="alert alert-success" role="alert">
+        Kaydınız Başarıyla Gerçekleşti!
+    </div>
+    <div *ngIf="mesajTur == 'error'" class="alert alert-danger" role="alert">
+        Kayıt Sırasında Bir Hata Oluştu!
+    </div>
+    <div class="form-group">
+        <label>Email address</label>
+        <input type="email" name="email" [(ngModel)]="registerUser.email" class="form-control" placeholder="E-Mail">
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" [(ngModel)]="registerUser.password" class="form-control" name="password"
+            placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text" [(ngModel)]="registerUser.firstName" class="form-control" name="firstName"
+            placeholder="First Name">
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" [(ngModel)]="registerUser.lastName" class="form-control" name="lastName"
+            placeholder="Last Name">
+    </div>
+    <button type="submit" (click)="register(registerUser)" class="btn btn-primary">Register</button>
+</form>

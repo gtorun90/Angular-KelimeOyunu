@@ -1,17 +1,22 @@
-<div class="container">
-    <form>
-        <div class="form-group">
-            <label>Soru</label>
-            <input type="text" [(ngModel)]="soruBankasi.soru" class="form-control" name="soru" placeholder="Soru">
-        </div>        
-        <div class="form-group">
-            <label>Cevap</label>
-            <input type="text" [(ngModel)]="soruBankasi.cevap" class="form-control" name="cevap" placeholder="Cevap">
-        </div>
-        <div class="form-group">
-            <label>Cevap Harf Sayisi</label>
-            <input type="text" [(ngModel)]="soruBankasi.cevapharfsayisi" class="form-control" name="cevapharfsayisi" placeholder="Cevap Harf Sayisi">
-        </div>
-        <button type="submit" (click)="saveQuestion(soruBankasi)" class="btn btn-primary">Save</button>
-    </form>
-</div>
+<form>
+    <div *ngIf="mesajTur == 'success'" class="alert alert-success" role="alert">
+        Soru Veritabanına Eklendi!
+    </div>
+    <div *ngIf="mesajTur == 'error'" class="alert alert-danger" role="alert">
+        Kayıt Sırasında Bir Hata Oluştu!
+    </div>
+    <div class="form-group">
+        <label>Soru</label>
+        <input type="text" [(ngModel)]="soruBankasi.soru" class="form-control" name="soru" placeholder="Soru">
+    </div>
+    <div class="form-group">
+        <label>Cevap</label>
+        <input type="text" [(ngModel)]="soruBankasi.cevap" class="form-control" name="cevap" placeholder="Cevap">
+    </div>
+    <div class="form-group">
+        <label>Cevap Harf Sayisi</label>
+        <input type="text" [(ngModel)]="soruBankasi.cevapharfsayisi" class="form-control" name="cevapharfsayisi"
+            placeholder="Cevap Harf Sayisi">
+    </div>
+    <button type="submit" (click)="saveQuestion(soruBankasi)" class="btn btn-primary">Save</button>
+</form>

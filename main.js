@@ -4,7 +4,7 @@ var bodyParser = require('body-parser')
 var cors = require('cors')
 var path = require('path');
 
-var home = require('./services/homeService')
+var game = require('./services/gameService')
 var user = require('./services/userService')
 
 var app = express()
@@ -24,7 +24,7 @@ mongoose.connect('mongodb+srv://gokhan:4791181gs@kelimeoyunu-ujxwd.mongodb.net/k
     }
 })
 
-app.use('/home',home.router)
+app.use('/game',game.router)
 app.use('/user',user.router)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));

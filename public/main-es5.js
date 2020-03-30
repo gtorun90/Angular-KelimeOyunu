@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\r\n    <a class=\"navbar-brand\" href=\"#\"></a>\r\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\"\r\n        aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n        <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n        <ul class=\"navbar-nav\">\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/game\" routerLinkActive=\"active\"\r\n                    [routerLinkActiveOptions]=\"{exact:true}\">Home</a>\r\n            </li>\r\n        </ul>\r\n        <ul class=\"navbar-nav flex-row ml-md-auto d-none d-md-flex\">\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/login\" routerLinkActive=\"active\"\r\n                    [routerLinkActiveOptions]=\"{exact:true}\">Log in</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/register\" routerLinkActive=\"active\"\r\n                    [routerLinkActiveOptions]=\"{exact:true}\">Register</a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</nav>\r\n<div class=\"container mt-4\">\r\n\r\n    <router-outlet></router-outlet>\r\n</div>"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "<router-outlet></router-outlet>"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container mt-4\">\n  <div class=\"card mb-4\" *ngIf=\"tamamlandi\">\n    <div class=\"card-body\">\n      Tebrikler yarışmayı {{ puan }} puan ile tamamladınız!\n    </div>\n  </div>\n  <div class=\"card\" *ngIf=\"!mevcutSoru; else mevcutSoruYoksa\">\n    <div class=\"card-header\">\n      <h5 class=\"mb-0\">Kelime Oyunu Yarışmasına Hoşgeldiniz!</h5>\n    </div>\n    <div class=\"card-body\">\n      Yarışmaya başlamak için yarışmaya başla butonuna basın.\n    </div>\n    <div class=\"card-footer\">\n      <button class=\"btn btn-primary\" (click)=\"basla()\">Yarışmaya Başla</button>\n    </div>\n  </div>\n  <ng-template #mevcutSoruYoksa>\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h3 class=\"mb-0\">{{ mevcutSoru.soru }}</h3>\n        <button class=\"btn btn-success float-right\" (click)=\"soruVer()\" *ngIf=\"cevaplandi\">Sonraki Soru</button>\n        <!-- TO DO son soruda soru ver çıkmayacak, soruyu cevapladığında tebrikler bölümü görünebilir. -->\n      </div>\n      <div class=\"card-body\">\n        <div class=\"d-flex\">\n          <harf [deger]=\"harf.harf.toLocaleUpperCase('tr')\" [acik]=\"harf.acildi\" *ngFor=\"let harf of harfler\"></harf>\n        </div>\n      </div>\n      <div class=\"card-footer\">\n        <div class=\"d-flex\">\n          <div class=\"mr-4\">Toplam Puan: {{ puan }}</div>\n          <div class=\"mr-4\">\n            Kalan Cevap Süreniz:\n            <kbd>{{ kalanSure }}</kbd> saniye\n          </div>\n          <div class=\"mr-4\">Harf Puanı: {{ harfPuan }}</div>\n          <div class=\"float-right\">\n            Kalan Yarışma Süreniz:\n            <kbd>{{ toplamKalanSure }}</kbd> saniye\n          </div>\n        </div>\n      </div>\n      <div class=\"card-footer\">\n        <div class=\"input-group\">\n          <input class=\"form-control\" type=\"text\" placeholder=\"Cevabınızı yazın\" [(ngModel)]=\"yarismaciCevap\"\n            (keypress)=\"enterIleCevapVer($event)\" (keyup)=\"yarismaciCevap = yarismaciCevap.toLocaleUpperCase('tr')\" />\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-secondary\" (click)=\"harfVer()\">\n              Harf Ver\n            </button>\n            <button [disabled]=\"!yarismaciCevap\" (click)=\"cevapVer()\" class=\"btn btn-success\">\n              Cevap Ver\n            </button>\n          </div>\n        </div>\n      </div>\n      <div class=\"card-footer\" [ngClass]=\"mesajClass\" *ngIf=\"mesaj\">\n        {{ mesaj }}\n      </div>\n    </div>\n    <!--Cart div kapanışı-->\n\n  </ng-template>\n</div>"
+module.exports = "<div>\n  <div class=\"card mb-4\" *ngIf=\"tamamlandi\">\n    <div class=\"card-body\">\n      Tebrikler yarışmayı {{ puan }} puan ile tamamladınız!\n    </div>\n  </div>\n  <div class=\"card\" *ngIf=\"!mevcutSoru; else mevcutSoruYoksa\">\n    <div class=\"card-header\">\n      <h5 class=\"mb-0\">Kelime Oyunu Yarışmasına Hoşgeldiniz!</h5>\n    </div>\n    <div class=\"card-body\">\n      Yarışmaya başlamak için yarışmaya başla butonuna basın.\n    </div>\n    <div class=\"card-footer\">\n      <button class=\"btn btn-primary\" (click)=\"basla()\">Yarışmaya Başla</button>\n    </div>\n  </div>\n  <ng-template #mevcutSoruYoksa>\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h3 class=\"mb-0\">{{ mevcutSoru.soru }}</h3>\n        <button class=\"btn btn-success float-right\" (click)=\"soruVer()\" *ngIf=\"cevaplandi\">Sonraki Soru</button>\n        <!-- TO DO son soruda soru ver çıkmayacak, soruyu cevapladığında tebrikler bölümü görünebilir. -->\n      </div>\n      <div class=\"card-body\">\n        <div class=\"d-flex\">\n          <harf [deger]=\"harf.harf.toLocaleUpperCase('tr')\" [acik]=\"harf.acildi\" *ngFor=\"let harf of harfler\"></harf>\n        </div>\n      </div>\n      <div class=\"card-footer\">\n        <div class=\"d-flex\">\n          <div class=\"mr-4\">Toplam Puan: {{ puan }}</div>\n          <div class=\"mr-4\">\n            Kalan Cevap Süreniz:\n            <kbd>{{ kalanSure }}</kbd> saniye\n          </div>\n          <div class=\"mr-4\">Harf Puanı: {{ harfPuan }}</div>\n          <div class=\"float-right\">\n            Kalan Yarışma Süreniz:\n            <kbd>{{ toplamKalanSure }}</kbd> saniye\n          </div>\n        </div>\n      </div>\n      <div class=\"card-footer\">\n        <div class=\"input-group\">\n          <input class=\"form-control\" type=\"text\" placeholder=\"Cevabınızı yazın\" [(ngModel)]=\"yarismaciCevap\"\n            (keypress)=\"enterIleCevapVer($event)\" (keyup)=\"yarismaciCevap = yarismaciCevap.toLocaleUpperCase('tr')\" />\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-secondary\" (click)=\"harfVer()\">\n              Harf Ver\n            </button>\n            <button [disabled]=\"!yarismaciCevap\" (click)=\"cevapVer()\" class=\"btn btn-success\">\n              Cevap Ver\n            </button>\n          </div>\n        </div>\n      </div>\n      <div class=\"card-footer\" [ngClass]=\"mesajClass\" *ngIf=\"mesaj\">\n        {{ mesaj }}\n      </div>\n    </div>\n    <!--Cart div kapanışı-->\n\n  </ng-template>\n</div>"
 
 /***/ }),
 
@@ -63,7 +63,7 @@ module.exports = "<div class=\"harf hexagon shadow mr-3 text-white\">\r\n  <span
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <form>\n        <div class=\"form-group\">\n            <label>Email address</label>\n            <input type=\"email\" name=\"email\"  [(ngModel)]=\"loginUser.email\" class=\"form-control\" placeholder=\"E-Mail\">\n        </div>\n        <div class=\"form-group\">\n            <label>Password</label>\n            <input type=\"password\" [(ngModel)]=\"loginUser.password\" class=\"form-control\" name=\"password\"  placeholder=\"Password\">\n        </div>\n        <button type=\"submit\" (click)=\"login(loginUser)\" class=\"btn btn-primary\">Login</button>\n    </form>\n</div>"
+module.exports = "<form>\n    <div *ngIf=\"mesajTur == 'success'\" class=\"alert alert-success\" role=\"alert\">\n        Giriş Başarılı! Birazdan Oyun Sayfasına Yönlendirileceksiniz...\n    </div>\n    <div *ngIf=\"mesajTur == 'error'\" class=\"alert alert-danger\" role=\"alert\">\n        E-Posta veya Şifre Hatalı!\n    </div>\n    <div class=\"form-group\">\n        <label>Email address</label>\n        <input type=\"email\" name=\"email\" [(ngModel)]=\"loginUser.email\" class=\"form-control\" placeholder=\"E-Mail\">\n    </div>\n    <div class=\"form-group\">\n        <label>Password</label>\n        <input type=\"password\" [(ngModel)]=\"loginUser.password\" class=\"form-control\" name=\"password\"\n            placeholder=\"Password\">\n    </div>\n    <button type=\"submit\" (click)=\"login(loginUser)\" class=\"btn btn-primary\">Login</button>\n</form>"
 
 /***/ }),
 
@@ -74,7 +74,7 @@ module.exports = "<div class=\"container\">\n    <form>\n        <div class=\"fo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <form>\n        <div class=\"form-group\">\n            <label>Email address</label>\n            <input type=\"email\" name=\"email\"  [(ngModel)]=\"registerUser.email\" class=\"form-control\" placeholder=\"E-Mail\">\n        </div>\n        <div class=\"form-group\">\n            <label>Password</label>\n            <input type=\"password\" [(ngModel)]=\"registerUser.password\" class=\"form-control\" name=\"password\"  placeholder=\"Password\">\n        </div>\n        <div class=\"form-group\">\n            <label>First Name</label>\n            <input type=\"text\" [(ngModel)]=\"registerUser.firstName\" class=\"form-control\" name=\"firstName\" placeholder=\"First Name\">\n        </div>\n        <div class=\"form-group\">\n            <label>Last Name</label>\n            <input type=\"text\" [(ngModel)]=\"registerUser.lastName\" class=\"form-control\" name=\"lastName\" placeholder=\"Last Name\">\n        </div>\n        <button type=\"submit\" (click)=\"register(registerUser)\" class=\"btn btn-primary\">Register</button>\n    </form>\n</div>"
+module.exports = "<form>\n    <div *ngIf=\"mesajTur == 'success'\" class=\"alert alert-success\" role=\"alert\">\n        Kaydınız Başarıyla Gerçekleşti!\n    </div>\n    <div *ngIf=\"mesajTur == 'error'\" class=\"alert alert-danger\" role=\"alert\">\n        Kayıt Sırasında Bir Hata Oluştu!\n    </div>\n    <div class=\"form-group\">\n        <label>Email address</label>\n        <input type=\"email\" name=\"email\" [(ngModel)]=\"registerUser.email\" class=\"form-control\" placeholder=\"E-Mail\">\n    </div>\n    <div class=\"form-group\">\n        <label>Password</label>\n        <input type=\"password\" [(ngModel)]=\"registerUser.password\" class=\"form-control\" name=\"password\"\n            placeholder=\"Password\">\n    </div>\n    <div class=\"form-group\">\n        <label>First Name</label>\n        <input type=\"text\" [(ngModel)]=\"registerUser.firstName\" class=\"form-control\" name=\"firstName\"\n            placeholder=\"First Name\">\n    </div>\n    <div class=\"form-group\">\n        <label>Last Name</label>\n        <input type=\"text\" [(ngModel)]=\"registerUser.lastName\" class=\"form-control\" name=\"lastName\"\n            placeholder=\"Last Name\">\n    </div>\n    <button type=\"submit\" (click)=\"register(registerUser)\" class=\"btn btn-primary\">Register</button>\n</form>"
 
 /***/ }),
 
@@ -85,7 +85,7 @@ module.exports = "<div class=\"container\">\n    <form>\n        <div class=\"fo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <form>\n        <div class=\"form-group\">\n            <label>Soru</label>\n            <input type=\"text\" [(ngModel)]=\"soruBankasi.soru\" class=\"form-control\" name=\"soru\" placeholder=\"Soru\">\n        </div>        \n        <div class=\"form-group\">\n            <label>Cevap</label>\n            <input type=\"text\" [(ngModel)]=\"soruBankasi.cevap\" class=\"form-control\" name=\"cevap\" placeholder=\"Cevap\">\n        </div>\n        <div class=\"form-group\">\n            <label>Cevap Harf Sayisi</label>\n            <input type=\"text\" [(ngModel)]=\"soruBankasi.cevapharfsayisi\" class=\"form-control\" name=\"cevapharfsayisi\" placeholder=\"Cevap Harf Sayisi\">\n        </div>\n        <button type=\"submit\" (click)=\"saveQuestion(soruBankasi)\" class=\"btn btn-primary\">Save</button>\n    </form>\n</div>"
+module.exports = "<form>\n    <div *ngIf=\"mesajTur == 'success'\" class=\"alert alert-success\" role=\"alert\">\n        Soru Veritabanına Eklendi!\n    </div>\n    <div *ngIf=\"mesajTur == 'error'\" class=\"alert alert-danger\" role=\"alert\">\n        Kayıt Sırasında Bir Hata Oluştu!\n    </div>\n    <div class=\"form-group\">\n        <label>Soru</label>\n        <input type=\"text\" [(ngModel)]=\"soruBankasi.soru\" class=\"form-control\" name=\"soru\" placeholder=\"Soru\">\n    </div>\n    <div class=\"form-group\">\n        <label>Cevap</label>\n        <input type=\"text\" [(ngModel)]=\"soruBankasi.cevap\" class=\"form-control\" name=\"cevap\" placeholder=\"Cevap\">\n    </div>\n    <div class=\"form-group\">\n        <label>Cevap Harf Sayisi</label>\n        <input type=\"text\" [(ngModel)]=\"soruBankasi.cevapharfsayisi\" class=\"form-control\" name=\"cevapharfsayisi\"\n            placeholder=\"Cevap Harf Sayisi\">\n    </div>\n    <button type=\"submit\" (click)=\"saveQuestion(soruBankasi)\" class=\"btn btn-primary\">Save</button>\n</form>"
 
 /***/ }),
 
@@ -155,6 +155,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_auth_interceptor_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/auth-interceptor.service */ "./src/app/services/auth-interceptor.service.ts");
 /* harmony import */ var _components_game_game_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/game/game.component */ "./src/app/components/game/game.component.ts");
 /* harmony import */ var _components_soru_bankasi_soru_bankasi_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/soru-bankasi/soru-bankasi.component */ "./src/app/components/soru-bankasi/soru-bankasi.component.ts");
+/* harmony import */ var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./guards/auth.guard */ "./src/app/guards/auth.guard.ts");
+
 
 
 
@@ -171,11 +173,11 @@ __webpack_require__.r(__webpack_exports__);
 
 // import {AuthGuard} from "./guards/auth.guard"
 var routes = [
-    { path: "", component: _components_game_game_component__WEBPACK_IMPORTED_MODULE_12__["GameComponent"], pathMatch: "full" },
-    { path: "home", component: _components_game_game_component__WEBPACK_IMPORTED_MODULE_12__["GameComponent"] },
+    { path: "", component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"], pathMatch: "full" },
+    { path: "game", component: _components_game_game_component__WEBPACK_IMPORTED_MODULE_12__["GameComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_14__["AuthGuard"]] },
     { path: "login", component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"] },
-    { path: "register", component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_10__["RegisterComponent"] },
-    { path: "question", component: _components_soru_bankasi_soru_bankasi_component__WEBPACK_IMPORTED_MODULE_13__["SoruBankasiComponent"] }
+    { path: "register", component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_10__["RegisterComponent"], },
+    { path: "question", component: _components_soru_bankasi_soru_bankasi_component__WEBPACK_IMPORTED_MODULE_13__["SoruBankasiComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_14__["AuthGuard"]] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -198,6 +200,7 @@ var AppModule = /** @class */ (function () {
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes)
             ],
             providers: [
+                _guards_auth_guard__WEBPACK_IMPORTED_MODULE_14__["AuthGuard"],
                 {
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HTTP_INTERCEPTORS"],
                     useClass: _services_auth_interceptor_service__WEBPACK_IMPORTED_MODULE_11__["AuthInterceptorService"],
@@ -440,7 +443,7 @@ var Tuslar;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".harf {\n  width: 80px;\n  height: 90px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 30pt;\n}\n\n.hexagon {\n  position: relative;\n  width: 80px;\n  height: 46.19px;\n  background-color: #3d4141;\n  margin: 23.1px 0;\n}\n\n.hexagon:before,\n.hexagon:after {\n  content: \"\";\n  position: absolute;\n  width: 0;\n  border-left: 40px solid transparent;\n  border-right: 40px solid transparent;\n}\n\n.hexagon:before {\n  bottom: 100%;\n  border-bottom: 23.1px solid #3d4141;\n}\n\n.hexagon:after {\n  top: 100%;\n  width: 0;\n  border-top: 23.1px solid #3d4141;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9oYXJmL0M6XFxBbmd1bGFyXFxGaW5kVGhlV29yZFxcYW5ndWxhci1zcmMvc3JjXFxhcHBcXGNvbXBvbmVudHNcXGhhcmZcXGhhcmYuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvaGFyZi9oYXJmLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSx1QkFBQTtFQUNBLGVBQUE7QUNDRjs7QURFQTtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLGVBQUE7RUFDQSx5QkFBQTtFQUNBLGdCQUFBO0FDQ0Y7O0FERUE7O0VBRUUsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLG1DQUFBO0VBQ0Esb0NBQUE7QUNDRjs7QURFQTtFQUNFLFlBQUE7RUFDQSxtQ0FBQTtBQ0NGOztBREVBO0VBQ0UsU0FBQTtFQUNBLFFBQUE7RUFDQSxnQ0FBQTtBQ0NGIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9oYXJmL2hhcmYuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGFyZiB7XHJcbiAgd2lkdGg6IDgwcHg7XHJcbiAgaGVpZ2h0OiA5MHB4O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBmb250LXNpemU6IDMwcHQ7XHJcbn1cclxuXHJcbi5oZXhhZ29uIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgd2lkdGg6IDgwcHg7IFxyXG4gIGhlaWdodDogNDYuMTlweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoNjEsIDY1LCA2NSk7XHJcbiAgbWFyZ2luOiAyMy4xcHggMDtcclxufVxyXG5cclxuLmhleGFnb246YmVmb3JlLFxyXG4uaGV4YWdvbjphZnRlciB7XHJcbiAgY29udGVudDogXCJcIjtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgd2lkdGg6IDA7XHJcbiAgYm9yZGVyLWxlZnQ6IDQwcHggc29saWQgdHJhbnNwYXJlbnQ7XHJcbiAgYm9yZGVyLXJpZ2h0OiA0MHB4IHNvbGlkIHRyYW5zcGFyZW50O1xyXG59XHJcblxyXG4uaGV4YWdvbjpiZWZvcmUge1xyXG4gIGJvdHRvbTogMTAwJTtcclxuICBib3JkZXItYm90dG9tOiAyMy4xcHggc29saWQgcmdiKDYxLCA2NSwgNjUpO1xyXG59XHJcblxyXG4uaGV4YWdvbjphZnRlciB7XHJcbiAgdG9wOiAxMDAlO1xyXG4gIHdpZHRoOiAwO1xyXG4gIGJvcmRlci10b3A6IDIzLjFweCBzb2xpZCByZ2IoNjEsIDY1LCA2NSk7XHJcbn0iLCIuaGFyZiB7XG4gIHdpZHRoOiA4MHB4O1xuICBoZWlnaHQ6IDkwcHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBmb250LXNpemU6IDMwcHQ7XG59XG5cbi5oZXhhZ29uIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB3aWR0aDogODBweDtcbiAgaGVpZ2h0OiA0Ni4xOXB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjM2Q0MTQxO1xuICBtYXJnaW46IDIzLjFweCAwO1xufVxuXG4uaGV4YWdvbjpiZWZvcmUsXG4uaGV4YWdvbjphZnRlciB7XG4gIGNvbnRlbnQ6IFwiXCI7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgd2lkdGg6IDA7XG4gIGJvcmRlci1sZWZ0OiA0MHB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICBib3JkZXItcmlnaHQ6IDQwcHggc29saWQgdHJhbnNwYXJlbnQ7XG59XG5cbi5oZXhhZ29uOmJlZm9yZSB7XG4gIGJvdHRvbTogMTAwJTtcbiAgYm9yZGVyLWJvdHRvbTogMjMuMXB4IHNvbGlkICMzZDQxNDE7XG59XG5cbi5oZXhhZ29uOmFmdGVyIHtcbiAgdG9wOiAxMDAlO1xuICB3aWR0aDogMDtcbiAgYm9yZGVyLXRvcDogMjMuMXB4IHNvbGlkICMzZDQxNDE7XG59Il19 */"
+module.exports = ".harf {\n  width: 80px;\n  height: 90px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 30pt;\n}\n\n@media screen and (max-width: 450px) {\n  .hexagon {\n    position: relative;\n    width: 40px;\n    height: 23.1px;\n    background-color: #3d4141;\n    margin: 11.6px 0;\n  }\n\n  .hexagon:before,\n.hexagon:after {\n    content: \"\";\n    position: absolute;\n    width: 0;\n    border-left: 20px solid transparent;\n    border-right: 20px solid transparent;\n  }\n\n  .hexagon:before {\n    bottom: 100%;\n    border-bottom: 11.6px solid #3d4141;\n  }\n\n  .hexagon:after {\n    top: 100%;\n    width: 0;\n    border-top: 11.6px solid #3d4141;\n  }\n}\n\n@media screen and (min-width: 450px) {\n  .hexagon {\n    position: relative;\n    width: 80px;\n    height: 46.19px;\n    background-color: #3d4141;\n    margin: 23.1px 0;\n  }\n\n  .hexagon:before,\n.hexagon:after {\n    content: \"\";\n    position: absolute;\n    width: 0;\n    border-left: 40px solid transparent;\n    border-right: 40px solid transparent;\n  }\n\n  .hexagon:before {\n    bottom: 100%;\n    border-bottom: 23.1px solid #3d4141;\n  }\n\n  .hexagon:after {\n    top: 100%;\n    width: 0;\n    border-top: 23.1px solid #3d4141;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9oYXJmL0M6XFxBbmd1bGFyXFxGaW5kVGhlV29yZFxcYW5ndWxhci1zcmMvc3JjXFxhcHBcXGNvbXBvbmVudHNcXGhhcmZcXGhhcmYuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvaGFyZi9oYXJmLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSx1QkFBQTtFQUNBLGVBQUE7QUNDRjs7QURDQTtFQUNFO0lBQ0Usa0JBQUE7SUFDQSxXQUFBO0lBQ0EsY0FBQTtJQUNBLHlCQUFBO0lBQ0EsZ0JBQUE7RUNFRjs7RURDQTs7SUFFRSxXQUFBO0lBQ0Esa0JBQUE7SUFDQSxRQUFBO0lBQ0EsbUNBQUE7SUFDQSxvQ0FBQTtFQ0VGOztFRENBO0lBQ0UsWUFBQTtJQUNBLG1DQUFBO0VDRUY7O0VEQ0E7SUFDRSxTQUFBO0lBQ0EsUUFBQTtJQUNBLGdDQUFBO0VDRUY7QUFDRjs7QURBQTtFQUNFO0lBQ0Usa0JBQUE7SUFDQSxXQUFBO0lBQ0EsZUFBQTtJQUNBLHlCQUFBO0lBQ0EsZ0JBQUE7RUNFRjs7RURDQTs7SUFFRSxXQUFBO0lBQ0Esa0JBQUE7SUFDQSxRQUFBO0lBQ0EsbUNBQUE7SUFDQSxvQ0FBQTtFQ0VGOztFRENBO0lBQ0UsWUFBQTtJQUNBLG1DQUFBO0VDRUY7O0VEQ0E7SUFDRSxTQUFBO0lBQ0EsUUFBQTtJQUNBLGdDQUFBO0VDRUY7QUFDRiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvaGFyZi9oYXJmLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmhhcmYge1xyXG4gIHdpZHRoOiA4MHB4O1xyXG4gIGhlaWdodDogOTBweDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgZm9udC1zaXplOiAzMHB0O1xyXG59XHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDQ1MHB4KSB7XHJcbiAgLmhleGFnb24ge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgd2lkdGg6IDQwcHg7XHJcbiAgICBoZWlnaHQ6IDIzLjFweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig2MSwgNjUsIDY1KTtcclxuICAgIG1hcmdpbjogMTEuNnB4IDA7XHJcbiAgfVxyXG5cclxuICAuaGV4YWdvbjpiZWZvcmUsXHJcbiAgLmhleGFnb246YWZ0ZXIge1xyXG4gICAgY29udGVudDogXCJcIjtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHdpZHRoOiAwO1xyXG4gICAgYm9yZGVyLWxlZnQ6IDIwcHggc29saWQgdHJhbnNwYXJlbnQ7XHJcbiAgICBib3JkZXItcmlnaHQ6IDIwcHggc29saWQgdHJhbnNwYXJlbnQ7XHJcbiAgfVxyXG5cclxuICAuaGV4YWdvbjpiZWZvcmUge1xyXG4gICAgYm90dG9tOiAxMDAlO1xyXG4gICAgYm9yZGVyLWJvdHRvbTogMTEuNnB4IHNvbGlkIHJnYig2MSwgNjUsIDY1KTtcclxuICB9XHJcblxyXG4gIC5oZXhhZ29uOmFmdGVyIHtcclxuICAgIHRvcDogMTAwJTtcclxuICAgIHdpZHRoOiAwO1xyXG4gICAgYm9yZGVyLXRvcDogMTEuNnB4IHNvbGlkIHJnYig2MSwgNjUsIDY1KTtcclxuICB9XHJcbn1cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNDUwcHgpIHtcclxuICAuaGV4YWdvbiB7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICB3aWR0aDogODBweDtcclxuICAgIGhlaWdodDogNDYuMTlweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig2MSwgNjUsIDY1KTtcclxuICAgIG1hcmdpbjogMjMuMXB4IDA7XHJcbiAgfVxyXG5cclxuICAuaGV4YWdvbjpiZWZvcmUsXHJcbiAgLmhleGFnb246YWZ0ZXIge1xyXG4gICAgY29udGVudDogXCJcIjtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHdpZHRoOiAwO1xyXG4gICAgYm9yZGVyLWxlZnQ6IDQwcHggc29saWQgdHJhbnNwYXJlbnQ7XHJcbiAgICBib3JkZXItcmlnaHQ6IDQwcHggc29saWQgdHJhbnNwYXJlbnQ7XHJcbiAgfVxyXG5cclxuICAuaGV4YWdvbjpiZWZvcmUge1xyXG4gICAgYm90dG9tOiAxMDAlO1xyXG4gICAgYm9yZGVyLWJvdHRvbTogMjMuMXB4IHNvbGlkIHJnYig2MSwgNjUsIDY1KTtcclxuICB9XHJcblxyXG4gIC5oZXhhZ29uOmFmdGVyIHtcclxuICAgIHRvcDogMTAwJTtcclxuICAgIHdpZHRoOiAwO1xyXG4gICAgYm9yZGVyLXRvcDogMjMuMXB4IHNvbGlkIHJnYig2MSwgNjUsIDY1KTtcclxuICB9XHJcbn1cclxuLy8gLmhleGFnb24ge1xyXG4vLyAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuLy8gICB3aWR0aDogODBweDtcclxuLy8gICBoZWlnaHQ6IDQ2LjE5cHg7XHJcbi8vICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDYxLCA2NSwgNjUpO1xyXG4vLyAgIG1hcmdpbjogMjMuMXB4IDA7XHJcbi8vIH1cclxuIiwiLmhhcmYge1xuICB3aWR0aDogODBweDtcbiAgaGVpZ2h0OiA5MHB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZm9udC1zaXplOiAzMHB0O1xufVxuXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA0NTBweCkge1xuICAuaGV4YWdvbiB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHdpZHRoOiA0MHB4O1xuICAgIGhlaWdodDogMjMuMXB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMzZDQxNDE7XG4gICAgbWFyZ2luOiAxMS42cHggMDtcbiAgfVxuXG4gIC5oZXhhZ29uOmJlZm9yZSxcbi5oZXhhZ29uOmFmdGVyIHtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB3aWR0aDogMDtcbiAgICBib3JkZXItbGVmdDogMjBweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBib3JkZXItcmlnaHQ6IDIwcHggc29saWQgdHJhbnNwYXJlbnQ7XG4gIH1cblxuICAuaGV4YWdvbjpiZWZvcmUge1xuICAgIGJvdHRvbTogMTAwJTtcbiAgICBib3JkZXItYm90dG9tOiAxMS42cHggc29saWQgIzNkNDE0MTtcbiAgfVxuXG4gIC5oZXhhZ29uOmFmdGVyIHtcbiAgICB0b3A6IDEwMCU7XG4gICAgd2lkdGg6IDA7XG4gICAgYm9yZGVyLXRvcDogMTEuNnB4IHNvbGlkICMzZDQxNDE7XG4gIH1cbn1cbkBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDQ1MHB4KSB7XG4gIC5oZXhhZ29uIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgd2lkdGg6IDgwcHg7XG4gICAgaGVpZ2h0OiA0Ni4xOXB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMzZDQxNDE7XG4gICAgbWFyZ2luOiAyMy4xcHggMDtcbiAgfVxuXG4gIC5oZXhhZ29uOmJlZm9yZSxcbi5oZXhhZ29uOmFmdGVyIHtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB3aWR0aDogMDtcbiAgICBib3JkZXItbGVmdDogNDBweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBib3JkZXItcmlnaHQ6IDQwcHggc29saWQgdHJhbnNwYXJlbnQ7XG4gIH1cblxuICAuaGV4YWdvbjpiZWZvcmUge1xuICAgIGJvdHRvbTogMTAwJTtcbiAgICBib3JkZXItYm90dG9tOiAyMy4xcHggc29saWQgIzNkNDE0MTtcbiAgfVxuXG4gIC5oZXhhZ29uOmFmdGVyIHtcbiAgICB0b3A6IDEwMCU7XG4gICAgd2lkdGg6IDA7XG4gICAgYm9yZGVyLXRvcDogMjMuMXB4IHNvbGlkICMzZDQxNDE7XG4gIH1cbn0iXX0= */"
 
 /***/ }),
 
@@ -520,29 +523,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(authService) {
+    function LoginComponent(authService, router) {
         this.authService = authService;
+        this.router = router;
         this.loginUser = {};
     }
-    LoginComponent.prototype.ngOnInit = function () {
-    };
+    LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.login = function (loginUser) {
         var _this = this;
         this.authService.login(loginUser).subscribe(function (data) {
             _this.authService.saveToken(data["token"]);
-            console.log(data["token"]);
+            _this.mesajTur = "success";
+            setTimeout(function () {
+                _this.router.navigate(["/game"]);
+            }, 3000);
+        }, function (error) {
+            _this.mesajTur = "error";
         });
     };
     LoginComponent.ctorParameters = function () { return [
-        { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] }
+        { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
     ]; };
     LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-login',
+            selector: "app-login",
             template: __webpack_require__(/*! raw-loader!./login.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/login/login.component.html"),
             providers: [src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]],
             styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/components/login/login.component.scss")]
@@ -587,10 +598,12 @@ var RegisterComponent = /** @class */ (function () {
         this.authService = authService;
         this.registerUser = {};
     }
-    RegisterComponent.prototype.ngOnInit = function () { };
     RegisterComponent.prototype.register = function (registerUser) {
+        var _this = this;
         this.authService.register(registerUser).subscribe(function (data) {
-            console.log(data);
+            _this.mesajTur = "success";
+        }, function (error) {
+            _this.mesajTur = "error";
         });
     };
     RegisterComponent.ctorParameters = function () { return [
@@ -644,15 +657,12 @@ var SoruBankasiComponent = /** @class */ (function () {
         this.soruBankasi = {};
     }
     SoruBankasiComponent.prototype.saveQuestion = function (soruBankasi) {
-        console.log(soruBankasi);
+        var _this = this;
         soruBankasi.soruldu = false;
         this.soruBankasiService.saveQuestion(soruBankasi).subscribe(function (data) {
-            if (data) {
-                alert("Kayıt Başarılı");
-            }
-            else {
-                alert("Bir Hata Oluştu");
-            }
+            _this.mesajTur = "success";
+        }, function (error) {
+            _this.mesajTur = "error";
         });
         this.clearSoruBankasi(soruBankasi);
     };
@@ -672,6 +682,52 @@ var SoruBankasiComponent = /** @class */ (function () {
         })
     ], SoruBankasiComponent);
     return SoruBankasiComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/guards/auth.guard.ts":
+/*!**************************************!*\
+  !*** ./src/app/guards/auth.guard.ts ***!
+  \**************************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
+
+
+
+
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    AuthGuard.prototype.canActivate = function () {
+        if (this.authService.isAuthenticated) {
+            return true;
+        }
+        else {
+            this.router.navigate(["/login"]);
+            return false;
+        }
+    };
+    AuthGuard.ctorParameters = function () { return [
+        { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+    ]; };
+    AuthGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+    ], AuthGuard);
+    return AuthGuard;
 }());
 
 
@@ -702,7 +758,7 @@ var AuthInterceptorService = /** @class */ (function () {
         var authService = this.injector.get(_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]);
         if (authService.isAuthenticated) {
             var authRequest = req.clone({
-                headers: req.headers.set('authorization', 'token ' + authService.token)
+                headers: req.headers.set("authorization", "token " + authService.token)
             });
             return next.handle(authRequest);
         }
@@ -713,7 +769,7 @@ var AuthInterceptorService = /** @class */ (function () {
     ]; };
     AuthInterceptorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
+            providedIn: "root"
         })
     ], AuthInterceptorService);
     return AuthInterceptorService;
@@ -759,8 +815,8 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.login = function (loginUser) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers = headers.append("Content-Type", "application/json");
-        // let getUrl = this.path + 'user/login'
-        var getUrl = "user/login";
+        var getUrl = this.path + "user/login";
+        //let getUrl = "user/login";
         return this.http.post(getUrl, loginUser, { headers: headers });
     };
     AuthService.prototype.saveToken = function (token) {
@@ -825,17 +881,18 @@ var SoruBankasiService = /** @class */ (function () {
         this.path = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].path;
     }
     SoruBankasiService.prototype.getQuestions = function () {
-        // let getUrl = this.path + 'home/index'
-        var getUrl = "home/index";
+        var getUrl = this.path + "game/index";
+        //let getUrl = "game/index";
         return this.http.get(getUrl);
     };
     SoruBankasiService.prototype.saveQuestion = function (soruBankasi) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
         headers = headers.append("Content-Type", "application/json");
-        // let postUrl = this.path + 'home/saveQuestion'
-        var postUrl = "home/saveQuestion";
-        return this.http
-            .post(postUrl, soruBankasi, { headers: headers });
+        var postUrl = this.path + "game/saveQuestion";
+        // let postUrl = "game/saveQuestion";
+        return this.http.post(postUrl, soruBankasi, {
+            headers: headers
+        });
     };
     SoruBankasiService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
@@ -867,7 +924,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: false,
-    path: "https://immense-sands-23124.herokuapp.com/"
+    path: "http://localhost:8080/"
 };
 /*
  * For easier debugging in development mode, you can import the following file

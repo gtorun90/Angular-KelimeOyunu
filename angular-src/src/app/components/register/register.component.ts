@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { RegisterUser } from "./registerUser";
 
@@ -8,13 +8,18 @@ import { RegisterUser } from "./registerUser";
   styleUrls: ["./register.component.scss"],
   providers: [AuthService]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   constructor(private authService: AuthService) {}
   registerUser: any = {};
-  ngOnInit() {}
+  mesajTur;
   register(registerUser: RegisterUser) {
-    this.authService.register(registerUser).subscribe(data => {
-      console.log(data);
-    });
+    this.authService.register(registerUser).subscribe(
+      data => {
+        this.mesajTur = "success";
+      },
+      error => {
+        this.mesajTur = "error";
+      }
+    );
   }
 }

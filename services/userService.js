@@ -14,8 +14,7 @@ router.post('/register',(req,res)=>{
     var user = new User(userData)
     user.save((err,result) =>{
         if(err){
-            console.log("Error While Saving User")
-            return res.status(500).send({message:"Error While Saving User"})
+          return res.status(500).send({message:"Error While Saving User"})
         }
         return res.status(201).send({message:"Created"})
 
@@ -29,7 +28,8 @@ router.post('/login',async (req,res) =>{
          return res.status(401).send({message:"Email or Password is invalid."})
      }
      if(userData.password != user.password){
-         return res.status(401).send({message:"Email or Password is invalid."})
+         message = "Email or Password is invalid."
+         return res.status(401).send({message})
      }
 
     var payload = {}

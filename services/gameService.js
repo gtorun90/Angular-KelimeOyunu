@@ -28,15 +28,15 @@ router.post('/saveQuestion',user.checkAuthenticated,async(req,res)=>{
     var question = req.body
     var questionBank = new QuestionBank(question)
     questionBank.save((err,result) =>{
-        if(err){
+       if(err){
             console.log("Error While Saving Question")
             return res.status(500).send({message:"Error While Saving Question"})
-        }
-        return res.status(201).send({message:"Created"})
+       }
+       return res.status(201).send({message:"Created"})
     })   
 })
 
 
-var home = {router}
+var game = {router}
 
-module.exports = home
+module.exports = game

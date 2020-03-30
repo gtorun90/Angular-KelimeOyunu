@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  path:"https://immense-sands-23124.herokuapp.com/"
+  path:"http://localhost:8080/"
 };
 
 /*
