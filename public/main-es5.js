@@ -263,14 +263,10 @@ var GameComponent = /** @class */ (function () {
         this.kalanSure = 0;
         this.toplamKalanSure = 0;
     }
-    GameComponent.prototype.sorulariGetir = function (cb) {
+    GameComponent.prototype.sorulariGetir = function () {
         var _this = this;
         return this.soruBankasiService.getQuestions().subscribe(function (data) {
             _this.sorular = data;
-            _this.sorular.map(function (x) {
-                x.soruldu = false;
-            });
-            cb();
         }, function (error) { });
     };
     GameComponent.prototype.mesajGoster = function (mesaj, tur) {
@@ -304,8 +300,11 @@ var GameComponent = /** @class */ (function () {
         this.tamamlandi = false;
         this.mevcutSoru = null;
         this.puan = 0;
+        this.sorulariGetir();
         this.toplamSureGoster();
-        this.sorulariGetir(this.soruVer);
+        this.sorular.map(function (x) {
+            x.soruldu = false;
+        });
         this.mesajGoster("İyi yarışmalar!");
     };
     GameComponent.prototype.toplamSureGoster = function () {

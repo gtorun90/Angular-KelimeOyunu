@@ -28,14 +28,10 @@ export class GameComponent {
   constructor(private soruBankasiService: SoruBankasiService) {
   }
 
-  sorulariGetir(cb) {
+  sorulariGetir() {
     return this.soruBankasiService.getQuestions().subscribe(
       data => {
         this.sorular = data;
-        this.sorular.map(x => {
-          x.soruldu = false;
-        });
-        cb();
       },
       error => {}
     );
@@ -67,9 +63,12 @@ export class GameComponent {
   basla(): void {
     this.tamamlandi = false;
     this.mevcutSoru = null;
-    this.puan = 0;
+    this.puan = 0; 
+    this.sorulariGetir();
     this.toplamSureGoster();
-    this.sorulariGetir(this.soruVer);
+    this.sorular.map(x => {
+      x.soruldu = false;
+    });
     this.mesajGoster("İyi yarışmalar!");
   }
   toplamSureGoster() {

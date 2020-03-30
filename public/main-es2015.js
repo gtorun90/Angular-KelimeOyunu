@@ -257,13 +257,9 @@ let GameComponent = class GameComponent {
         this.kalanSure = 0;
         this.toplamKalanSure = 0;
     }
-    sorulariGetir(cb) {
+    sorulariGetir() {
         return this.soruBankasiService.getQuestions().subscribe(data => {
             this.sorular = data;
-            this.sorular.map(x => {
-                x.soruldu = false;
-            });
-            cb();
         }, error => { });
     }
     mesajGoster(mesaj, tur = null) {
@@ -295,8 +291,11 @@ let GameComponent = class GameComponent {
         this.tamamlandi = false;
         this.mevcutSoru = null;
         this.puan = 0;
+        this.sorulariGetir();
         this.toplamSureGoster();
-        this.sorulariGetir(this.soruVer);
+        this.sorular.map(x => {
+            x.soruldu = false;
+        });
         this.mesajGoster("İyi yarışmalar!");
     }
     toplamSureGoster() {
