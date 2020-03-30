@@ -1,12 +1,12 @@
-.harf {
-  width: 80px;
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30pt;
-}
 @media screen and (max-width: 450px) {
+  .harf {
+    width: 40px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15pt;
+  }
   .hexagon {
     position: relative;
     width: 40px;
@@ -36,6 +36,14 @@
   }
 }
 @media screen and (min-width: 450px) {
+  .harf {
+    width: 80px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30pt;
+  }
   .hexagon {
     position: relative;
     width: 80px;
