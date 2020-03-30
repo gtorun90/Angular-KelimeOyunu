@@ -26,15 +26,15 @@ export class GameComponent {
   toplamKalanSure: number = 0;
   // apiUrl="https://localhost:44341/api/SoruCevaps";
   constructor(private soruBankasiService: SoruBankasiService) {
-    this.sorulariGetir();
   }
 
-  sorulariGetir() {
+  sorulariGetir(cb) {
     return this.soruBankasiService.getQuestions().subscribe(
       data => {
         this.sorular = data;
+        cb();
       },
-      error => console.log(error)
+      error => {}
     );
   }
 
@@ -69,7 +69,7 @@ export class GameComponent {
     this.sorular.map(x => {
       x.soruldu = false;
     });
-    this.soruVer();
+    this.sorulariGetir(this.soruVer);
     this.mesajGoster("İyi yarışmalar!");
   }
   toplamSureGoster() {

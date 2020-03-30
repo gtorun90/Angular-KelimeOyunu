@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Kelime Oyunu Api",
+  "description": "Find The Word Api",
   "main": "main.js",
   "scripts": {
     "start": "node main.js",

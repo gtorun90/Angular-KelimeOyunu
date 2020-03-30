@@ -256,12 +256,12 @@ let GameComponent = class GameComponent {
         this.toplamSure = null;
         this.kalanSure = 0;
         this.toplamKalanSure = 0;
-        this.sorulariGetir();
     }
-    sorulariGetir() {
+    sorulariGetir(cb) {
         return this.soruBankasiService.getQuestions().subscribe(data => {
             this.sorular = data;
-        }, error => console.log(error));
+            cb();
+        }, error => { });
     }
     mesajGoster(mesaj, tur = null) {
         if (this.mesajSure) {
@@ -296,7 +296,7 @@ let GameComponent = class GameComponent {
         this.sorular.map(x => {
             x.soruldu = false;
         });
-        this.soruVer();
+        this.sorulariGetir(this.soruVer);
         this.mesajGoster("İyi yarışmalar!");
     }
     toplamSureGoster() {

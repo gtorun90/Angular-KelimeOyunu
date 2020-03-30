@@ -23,7 +23,7 @@ router.get('/index',user.checkAuthenticated,async(req,res)=>{
     } 
     filteredQuestionBank.sort((a,b)=>(a.cevapHarfSayisi > b.cevapHarfSayisi) ? 1 : (a.cevapHarfSayisi === b.cevapHarfSayisi) ? 1 : -1)
     res.send(filteredQuestionBank)     
-})
+});
 router.post('/saveQuestion',user.checkAuthenticated,async(req,res)=>{
     var question = req.body
     var questionBank = new QuestionBank(question)
@@ -34,7 +34,7 @@ router.post('/saveQuestion',user.checkAuthenticated,async(req,res)=>{
        }
        return res.status(201).send({message:"Created"})
     })   
-})
+});
 
 
 var game = {router}
