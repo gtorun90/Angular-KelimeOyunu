@@ -32,6 +32,9 @@ export class GameComponent {
     return this.soruBankasiService.getQuestions().subscribe(
       data => {
         this.sorular = data;
+        this.sorular.map(x => {
+          x.soruldu = false;
+        });
         cb();
       },
       error => {}
@@ -66,9 +69,6 @@ export class GameComponent {
     this.mevcutSoru = null;
     this.puan = 0;
     this.toplamSureGoster();
-    this.sorular.map(x => {
-      x.soruldu = false;
-    });
     this.sorulariGetir(this.soruVer);
     this.mesajGoster("İyi yarışmalar!");
   }

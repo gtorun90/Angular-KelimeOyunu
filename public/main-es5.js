@@ -267,6 +267,9 @@ var GameComponent = /** @class */ (function () {
         var _this = this;
         return this.soruBankasiService.getQuestions().subscribe(function (data) {
             _this.sorular = data;
+            _this.sorular.map(function (x) {
+                x.soruldu = false;
+            });
             cb();
         }, function (error) { });
     };
@@ -302,9 +305,6 @@ var GameComponent = /** @class */ (function () {
         this.mevcutSoru = null;
         this.puan = 0;
         this.toplamSureGoster();
-        this.sorular.map(function (x) {
-            x.soruldu = false;
-        });
         this.sorulariGetir(this.soruVer);
         this.mesajGoster("İyi yarışmalar!");
     };
