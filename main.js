@@ -2,7 +2,7 @@ var express = require('express')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var cors = require('cors')
-var path = require('path');
+var path = require('path')
 
 var game = require('./services/gameService')
 var user = require('./services/userService')
