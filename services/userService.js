@@ -33,7 +33,7 @@ router.post('/login',async (req,res) =>{
      }
 
     var payload = {}
-    var token = jwt.encode(payload,'12345')
+    var token = jwt.encode(payload,'XYZFA989887')
     return res.status(200).send({token})
 })
 var user = {router,checkAuthenticated:(req,res,next)=>{
@@ -41,7 +41,7 @@ var user = {router,checkAuthenticated:(req,res,next)=>{
     return res.status(401).send({message:"Unauthorized. No Authorizateion Header"})
   }
   var token = req.header('authorization').split(' ')[1]
-  var payload = jwt.decode(token,'12345') 
+  var payload = jwt.decode(token,'XYZFA989887') 
   
   
   if(!payload){
