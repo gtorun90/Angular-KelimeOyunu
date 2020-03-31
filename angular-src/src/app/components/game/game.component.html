@@ -1,7 +1,10 @@
 <div>
   <div class="card mb-4" *ngIf="tamamlandi">
-    <div class="card-body">
+    <div *ngIf="puan != 0" class="card-body">
       Tebrikler yarışmayı {{ puan }} puan ile tamamladınız!
+    </div>
+    <div *ngIf="puan == 0" class="card-body">
+      Maalesef yarışmayı {{ puan }} puan ile tamamladınız!
     </div>
   </div>
   <div class="card" *ngIf="!mevcutSoru; else mevcutSoruYoksa">

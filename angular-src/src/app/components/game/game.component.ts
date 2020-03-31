@@ -25,18 +25,19 @@ export class GameComponent {
   kalanSure: number = 0;
   toplamKalanSure: number = 0;
   // apiUrl="https://localhost:44341/api/SoruCevaps";
-  constructor(private soruBankasiService: SoruBankasiService) {
-  }
+  constructor(private soruBankasiService: SoruBankasiService) {}
 
-  sorulariGetir(){
-    return this.soruBankasiService.getQuestions().subscribe(
-      data => {
-        this.sorular = data;
-      },
-      error => console.log(error)
-    );
+  async sorulariGetir() {
+    this.sorular = await this.soruBankasiService.getQuestions().toPromise();
+    this.soruVer();
+    return this.sorular;
   }
-
+  // .subscribe(
+  //   data => {
+  //       this.sorular = data;
+  //   },
+  //   error => console.log(error)
+  // );
   mesajGoster(mesaj: string, tur: MesajTurleri = null): void {
     if (this.mesajSure) {
       clearTimeout(this.mesajSure);
@@ -64,11 +65,7 @@ export class GameComponent {
     this.tamamlandi = false;
     this.mevcutSoru = null;
     this.puan = 0;
-    async () => await this.sorulariGetir();
-    async () => await this.sorular.map(x => {
-        x.soruldu = false;
-      });
-    async () => await this.soruVer();
+    this.sorulariGetir();
     this.toplamSureGoster();
     this.mesajGoster("İyi yarışmalar!");
   }
