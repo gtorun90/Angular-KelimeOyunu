@@ -261,15 +261,8 @@ let GameComponent = class GameComponent {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             this.sorular = yield this.soruBankasiService.getQuestions().toPromise();
             this.soruVer();
-            return this.sorular;
         });
     }
-    // .subscribe(
-    //   data => {
-    //       this.sorular = data;
-    //   },
-    //   error => console.log(error)
-    // );
     mesajGoster(mesaj, tur = null) {
         if (this.mesajSure) {
             clearTimeout(this.mesajSure);

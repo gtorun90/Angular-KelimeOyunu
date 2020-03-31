@@ -30,14 +30,7 @@ export class GameComponent {
   async sorulariGetir() {
     this.sorular = await this.soruBankasiService.getQuestions().toPromise();
     this.soruVer();
-    return this.sorular;
   }
-  // .subscribe(
-  //   data => {
-  //       this.sorular = data;
-  //   },
-  //   error => console.log(error)
-  // );
   mesajGoster(mesaj: string, tur: MesajTurleri = null): void {
     if (this.mesajSure) {
       clearTimeout(this.mesajSure);

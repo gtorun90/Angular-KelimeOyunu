@@ -274,17 +274,11 @@ var GameComponent = /** @class */ (function () {
                     case 1:
                         _a.sorular = _b.sent();
                         this.soruVer();
-                        return [2 /*return*/, this.sorular];
+                        return [2 /*return*/];
                 }
             });
         });
     };
-    // .subscribe(
-    //   data => {
-    //       this.sorular = data;
-    //   },
-    //   error => console.log(error)
-    // );
     GameComponent.prototype.mesajGoster = function (mesaj, tur) {
         var _this = this;
         if (tur === void 0) { tur = null; }
