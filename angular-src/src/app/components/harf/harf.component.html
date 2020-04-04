@@ -1,6 +1,10 @@
-<div class="harf hexagon shadow mr-2 text-white">
-  <span @rotatedState *ngIf="acik; else acikDegil">{{ deger }}</span>
-  <ng-template #acikDegil>
-    <span></span>
-  </ng-template>
+<div class="kelime">
+  <div class="elmas">
+    <div class="hexagon harf">
+      <span @rotatedState *ngIf="acik; else acikDegil">{{ deger }}</span>
+      <ng-template #acikDegil>
+        <span></span>
+      </ng-template>
+    </div>
+  </div>
 </div>

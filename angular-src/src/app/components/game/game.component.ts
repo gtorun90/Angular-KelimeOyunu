@@ -20,6 +20,7 @@ export class GameComponent {
   yarismaciCevap: string = "";
   tamamlandi: boolean = false;
   cevaplandi: boolean = false;
+  harflerVerildi: boolean = true;
   sure: any = null;
   toplamSure: any = null;
   kalanSure: number = 0;
@@ -42,7 +43,7 @@ export class GameComponent {
       this.mesajClass = "bg-danger text-white";
       stopInterVal = true;
     } else if (tur === MesajTurleri.basari) {
-      this.mesajClass = "bg-success text-white";
+      this.mesajClass = "bg-success text-white ";
       stopInterVal = true;
     } else {
       this.mesajClass = "bg-dark text-white";
@@ -59,7 +60,7 @@ export class GameComponent {
     this.mevcutSoru = null;
     this.puan = 0;
     this.sorulariGetir();
-    this.toplamSureGoster();
+    //this.toplamSureGoster();
     this.mesajGoster("İyi yarışmalar!");
   }
   toplamSureGoster() {
@@ -88,6 +89,7 @@ export class GameComponent {
   soruVer(): void {
     this.yarismaciCevap = "";
     this.cevaplandi = false;
+    this.harflerVerildi = true;
     this.mevcutSoru = this.sorular.find(x => x.soruldu == false);
     if (
       this.harfler.filter(x => x.acildi).length > 0 &&
@@ -99,7 +101,7 @@ export class GameComponent {
       this.bitir();
       return;
     }
-    this.cevapSureGoster();
+    //this.cevapSureGoster();
     this.harfler = [];
     this.mevcutSoru.cevap.split("").map(x => {
       this.harfler.push({
@@ -114,6 +116,7 @@ export class GameComponent {
     let rastgeleHarfIndex = Math.floor(Math.random() * this.harfler.length);
 
     if (!cevaplandi && this.harfPuan <= 100) {
+      this.harflerVerildi = false;
       return;
     }
 
