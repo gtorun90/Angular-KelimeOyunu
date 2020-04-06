@@ -60,7 +60,7 @@ export class GameComponent {
     this.mevcutSoru = null;
     this.puan = 0;
     this.sorulariGetir();
-    //this.toplamSureGoster();
+    this.toplamSureGoster();
     this.mesajGoster("İyi yarışmalar!");
   }
   toplamSureGoster() {
@@ -101,7 +101,7 @@ export class GameComponent {
       this.bitir();
       return;
     }
-    //this.cevapSureGoster();
+    this.cevapSureGoster();
     this.harfler = [];
     this.mevcutSoru.cevap.split("").map(x => {
       this.harfler.push({

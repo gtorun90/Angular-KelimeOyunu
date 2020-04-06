@@ -22,11 +22,13 @@
     <div class="card">
       <div class="card-header">
         <h3 class="mb-0">{{ mevcutSoru.soru }}</h3>
-        <button class="btn btn-outline-success float-right" (click)="soruVer()" *ngIf="cevaplandi">Sonraki</button> 
+        <button class="btn btn-outline-success float-right" (click)="soruVer()" *ngIf="cevaplandi">Sonraki</button>
         <!-- TO DO son soruda soru ver çıkmayacak, soruyu cevapladığında tebrikler bölümü görünebilir. -->
       </div>
       <div class="card-body">
-           <harf [deger]="harf.harf.toLocaleUpperCase('tr')" [acik]="harf.acildi" *ngFor="let harf of harfler"></harf>
+        <div class="row">
+          <harf [deger]="harf.harf.toLocaleUpperCase('tr')" [acik]="harf.acildi" *ngFor="let harf of harfler"></harf>
+        </div>
       </div>
       <div class="card-footer">
         <div class="d-flex">
