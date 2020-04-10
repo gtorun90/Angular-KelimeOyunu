@@ -21,12 +21,14 @@
   <ng-template #mevcutSoruYoksa>
     <div class="card">
       <div class="card-header">
-        <h3 class="mb-0">{{ mevcutSoru.soru }}</h3>
-        <button class="btn btn-outline-success float-right" (click)="soruVer()" *ngIf="cevaplandi">Sonraki</button> 
+        <h4 class="mb-0">{{ mevcutSoru.soru }}</h4>       
+        <button class="btn btn-outline-success float-right" (click)="soruVer()" *ngIf="cevaplandi"><span>Sonraki</span></button>
         <!-- TO DO son soruda soru ver çıkmayacak, soruyu cevapladığında tebrikler bölümü görünebilir. -->
       </div>
       <div class="card-body">
-           <harf [deger]="harf.harf.toLocaleUpperCase('tr')" [acik]="harf.acildi" *ngFor="let harf of harfler"></harf>
+        <div class="row">
+          <harf [deger]="harf.harf.toLocaleUpperCase('tr')" [acik]="harf.acildi" *ngFor="let harf of harfler"></harf>
+        </div>
       </div>
       <div class="card-footer">
         <div class="d-flex">
@@ -48,10 +50,10 @@
             (keypress)="enterIleCevapVer($event)" (keyup)="yarismaciCevap = yarismaciCevap.toLocaleUpperCase('tr')" />
           <div class="input-group-append">
             <button [disabled]="!harflerVerildi" class="btn btn-danger" (click)="harfVer()">
-              Harf Ver
+              <span>Harf Ver</span>
             </button>
             <button [disabled]="!yarismaciCevap" (click)="cevapVer()" class="btn btn-success">
-              Cevap Ver
+              <span>Cevap Ver</span>
             </button>
           </div>
         </div>
