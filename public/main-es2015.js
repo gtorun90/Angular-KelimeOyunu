@@ -41,7 +41,7 @@ module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"card mb-4\" *ngIf=\"tamamlandi\">\n    <div *ngIf=\"puan != 0\" class=\"card-body\">\n      Tebrikler yarışmayı {{ puan }} puan ile tamamladınız!\n    </div>\n    <div *ngIf=\"puan == 0\" class=\"card-body\">\n      Maalesef yarışmayı {{ puan }} puan ile tamamladınız!\n    </div>\n  </div>\n  <div class=\"card\" *ngIf=\"!mevcutSoru; else mevcutSoruYoksa\">\n    <div class=\"card-header\">\n      <h5 class=\"mb-0\">Kelime Oyunu Yarışmasına Hoşgeldiniz!</h5>\n    </div>\n    <div class=\"card-body\">\n      Yarışmaya başlamak için yarışmaya başla butonuna basın.\n    </div>\n    <div class=\"card-footer\">\n      <button class=\"btn btn-info\" (click)=\"basla()\">Yarışmaya Başla</button>\n    </div>\n  </div>\n  <ng-template #mevcutSoruYoksa>\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h3 class=\"mb-0\">{{ mevcutSoru.soru }}</h3>\n        <button class=\"btn btn-outline-success float-right\" (click)=\"soruVer()\" *ngIf=\"cevaplandi\">Sonraki</button> \n        <!-- TO DO son soruda soru ver çıkmayacak, soruyu cevapladığında tebrikler bölümü görünebilir. -->\n      </div>\n      <div class=\"card-body\">\n           <harf [deger]=\"harf.harf.toLocaleUpperCase('tr')\" [acik]=\"harf.acildi\" *ngFor=\"let harf of harfler\"></harf>\n      </div>\n      <div class=\"card-footer\">\n        <div class=\"d-flex\">\n          <div class=\"mr-4\">Toplam Puan: {{ puan }}</div>\n          <div class=\"mr-4\">\n            Kalan Cevap Süreniz:\n            <kbd>{{ kalanSure }}</kbd> saniye\n          </div>\n          <div class=\"mr-4\">Kelime Puanı: {{ harfPuan }}</div>\n          <div class=\"float-right\">\n            Kalan Yarışma Süreniz:\n            <kbd>{{ toplamKalanSure }}</kbd> saniye\n          </div>\n        </div>\n      </div>\n      <div class=\"card-footer\">\n        <div class=\"input-group\">\n          <input class=\"form-control\" type=\"text\" placeholder=\"Buraya Yazın\" [(ngModel)]=\"yarismaciCevap\"\n            (keypress)=\"enterIleCevapVer($event)\" (keyup)=\"yarismaciCevap = yarismaciCevap.toLocaleUpperCase('tr')\" />\n          <div class=\"input-group-append\">\n            <button [disabled]=\"!harflerVerildi\" class=\"btn btn-danger\" (click)=\"harfVer()\">\n              Harf Ver\n            </button>\n            <button [disabled]=\"!yarismaciCevap\" (click)=\"cevapVer()\" class=\"btn btn-success\">\n              Cevap Ver\n            </button>\n          </div>\n        </div>\n      </div>\n      <div class=\"card-footer\" [ngClass]=\"mesajClass\" *ngIf=\"mesaj\">\n        <span class=\"glyphicon glyphicon-ok-circle\"></span> {{ mesaj }}\n      </div>\n    </div>\n  </ng-template>\n</div>"
+module.exports = "<div>\r\n  <div class=\"card mb-4\" *ngIf=\"tamamlandi\">\r\n    <div *ngIf=\"puan != 0\" class=\"card-body\">\r\n      Tebrikler yarışmayı {{ puan }} puan ile tamamladınız!\r\n    </div>\r\n    <div *ngIf=\"puan == 0\" class=\"card-body\">\r\n      Maalesef yarışmayı {{ puan }} puan ile tamamladınız!\r\n    </div>\r\n  </div>\r\n  <div class=\"card\" *ngIf=\"!mevcutSoru; else mevcutSoruYoksa\">\r\n    <div class=\"card-header\">\r\n      <h5 class=\"mb-0\">Kelime Oyunu Yarışmasına Hoşgeldiniz!</h5>\r\n    </div>\r\n    <div class=\"card-body\">\r\n      Yarışmaya başlamak için yarışmaya başla butonuna basın.\r\n    </div>\r\n    <div class=\"card-footer\">\r\n      <button class=\"btn btn-info\" (click)=\"basla()\">Yarışmaya Başla</button>\r\n    </div>\r\n  </div>\r\n  <ng-template #mevcutSoruYoksa>\r\n    <div class=\"card\">\r\n      <div class=\"card-header\">\r\n        <h3 class=\"mb-0\">{{ mevcutSoru.soru }}</h3>\r\n        <button class=\"btn btn-outline-success float-right\" (click)=\"soruVer()\" *ngIf=\"cevaplandi\">Sonraki</button> \r\n        <!-- TO DO son soruda soru ver çıkmayacak, soruyu cevapladığında tebrikler bölümü görünebilir. -->\r\n      </div>\r\n      <div class=\"card-body\">\r\n           <harf [deger]=\"harf.harf.toLocaleUpperCase('tr')\" [acik]=\"harf.acildi\" *ngFor=\"let harf of harfler\"></harf>\r\n      </div>\r\n      <div class=\"card-footer\">\r\n        <div class=\"d-flex\">\r\n          <div class=\"mr-4\">Toplam Puan: {{ puan }}</div>\r\n          <div class=\"mr-4\">\r\n            Kalan Cevap Süreniz:\r\n            <kbd>{{ kalanSure }}</kbd> saniye\r\n          </div>\r\n          <div class=\"mr-4\">Kelime Puanı: {{ harfPuan }}</div>\r\n          <div class=\"float-right\">\r\n            Kalan Yarışma Süreniz:\r\n            <kbd>{{ toplamKalanSure }}</kbd> saniye\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer\">\r\n        <div class=\"input-group\">\r\n          <input class=\"form-control\" type=\"text\" placeholder=\"Buraya Yazın\" [(ngModel)]=\"yarismaciCevap\"\r\n            (keypress)=\"enterIleCevapVer($event)\" (keyup)=\"yarismaciCevap = yarismaciCevap.toLocaleUpperCase('tr')\" />\r\n          <div class=\"input-group-append\">\r\n            <button [disabled]=\"!harflerVerildi\" class=\"btn btn-danger\" (click)=\"harfVer()\">\r\n              Harf Ver\r\n            </button>\r\n            <button [disabled]=\"!yarismaciCevap\" (click)=\"cevapVer()\" class=\"btn btn-success\">\r\n              Cevap Ver\r\n            </button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer\" [ngClass]=\"mesajClass\" *ngIf=\"mesaj\">\r\n        <span class=\"glyphicon glyphicon-ok-circle\"></span> {{ mesaj }}\r\n      </div>\r\n    </div>\r\n  </ng-template>\r\n</div>"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<div>\n  <div class=\"card mb-4\" *ngIf=\"tamamlandi\">\n    <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"kelime\">\r\n  <div class=\"elmas\">\r\n    <div class=\"hexagon harf\">\r\n      <span @rotatedState *ngIf=\"acik; else acikDegil\">{{ deger }}</span>\r\n      <ng-template #acikDegil>\r\n        <span></span>\r\n      </ng-template>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"kelime\">\r\n  <div class=\"elmas\">\r\n    <div class=\"hexagon harf\">\r\n      <span  style=\"display: block\" @rotatedState *ngIf=\"acik; else acikDegil\">{{ deger }}</span>\r\n      <ng-template #acikDegil>\r\n        <span></span>\r\n      </ng-template>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -294,7 +294,7 @@ let GameComponent = class GameComponent {
         this.mevcutSoru = null;
         this.puan = 0;
         this.sorulariGetir();
-        //this.toplamSureGoster();
+        this.toplamSureGoster();
         this.mesajGoster("İyi yarışmalar!");
     }
     toplamSureGoster() {
@@ -333,7 +333,7 @@ let GameComponent = class GameComponent {
             this.bitir();
             return;
         }
-        //this.cevapSureGoster();
+        this.cevapSureGoster();
         this.harfler = [];
         this.mevcutSoru.cevap.split("").map(x => {
             this.harfler.push({
@@ -471,10 +471,6 @@ HarfComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         selector: "harf",
         template: __webpack_require__(/*! raw-loader!./harf.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/harf/harf.component.html"),
         animations: [
-            // trigger("flyAnimations", [
-            //   transition(":enter", [style({ opacity: 0, }),animate("800ms", style({ opacity: 1 }))]),
-            //   transition(":leave", [animate("800ms", style({ opacity: 0 }))])
-            // ])
             Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["trigger"])("rotatedState", [
                 Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["transition"])(":enter", [Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["style"])({ transform: 'rotateX(0)' }), Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["animate"])("200ms ease-out", Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["style"])({ transform: 'rotateX(360deg)' }))]),
                 Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["transition"])(":leave", [Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["animate"])("200ms ease-in", Object(_angular_animations__WEBPACK_IMPORTED_MODULE_2__["style"])({ transform: 'rotateX(360deg)' }))])
