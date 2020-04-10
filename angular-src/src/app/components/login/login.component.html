@@ -14,5 +14,5 @@
         <input type="password" [(ngModel)]="loginUser.password" class="form-control" name="password"
             placeholder="Password">
     </div>
-    <button type="submit" (click)="login(loginUser)" class="btn btn-primary">Login</button>
+    <button type="submit" [disabled]="mesajTur" (click)="login(loginUser)" class="btn btn-primary">Login</button>
 </form>
