@@ -36,9 +36,6 @@ export class AuthService {
   logOut() {
     localStorage.removeItem(this.TOKEN_KEY);
   }
-  loggedIn() {
-    return true;
-  }
   get isAuthenticated() {
     return !!localStorage.getItem(this.TOKEN_KEY);
   }

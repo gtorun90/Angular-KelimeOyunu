@@ -17,7 +17,7 @@ var routes = [
   {path:"",component:LoginComponent,pathMatch:"full"},
   {path:"game",component:GameComponent,canActivate:[AuthGuard]},
   {path:"login",component:LoginComponent},
-  {path:"register",component:RegisterComponent,},
+  {path:"register",component:RegisterComponent},
   {path:"question",component:SoruBankasiComponent,canActivate:[AuthGuard]}
 ]
 
