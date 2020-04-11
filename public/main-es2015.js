@@ -52,7 +52,7 @@ module.exports = "<div>\r\n  <div class=\"card mb-4\" *ngIf=\"tamamlandi\">\r\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"kelime\">\r\n  <div class=\"elmas\">\r\n    <div class=\"hexagon harf\">\r\n<<<<<<< HEAD\r\n      <span  style=\"display: block\" @rotatedState *ngIf=\"acik; else acikDegil\">{{ deger }}</span>\r\n=======\r\n      <span  style=\"display: inline-block\" @rotatedState *ngIf=\"acik; else acikDegil\">{{ deger }}</span>\r\n>>>>>>> newmaster\r\n      <ng-template #acikDegil>\r\n        <span></span>\r\n      </ng-template>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"kelime\">\r\n  <div class=\"elmas\">\r\n    <div class=\"hexagon harf\">\r\n      <span  style=\"display: inline-block\" @rotatedState *ngIf=\"acik; else acikDegil\">{{ deger }}</span>\r\n      <ng-template #acikDegil>\r\n        <span></span>\r\n      </ng-template>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
