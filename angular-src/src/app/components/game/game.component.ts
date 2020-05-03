@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component,OnInit } from "@angular/core";
 import { SoruBankasi } from "../soru-bankasi/soruBankasi";
 import { error } from "protractor";
 import { SoruBankasiService } from "src/app/services/soru-bankasi.service";
@@ -8,7 +8,7 @@ import { SoruBankasiService } from "src/app/services/soru-bankasi.service";
   templateUrl: "./game.component.html",
   styleUrls: ["./game.component.scss"]
 })
-export class GameComponent {
+export class GameComponent implements OnInit{
   sorular: SoruBankasi[];
   mesaj: string = null;
   mesajClass: string = "";
@@ -26,11 +26,14 @@ export class GameComponent {
   kalanSure: number = 0;
   toplamKalanSure: number = 0;
   // apiUrl="https://localhost:44341/api/SoruCevaps";
-  constructor(private soruBankasiService: SoruBankasiService) {}
-
+  constructor(private soruBankasiService: SoruBankasiService) {
+    //this.basla(); 
+  }
+  ngOnInit() {
+    //this.basla(); 
+  }
   async sorulariGetir() {
     this.sorular = await this.soruBankasiService.getQuestions().toPromise();
-    this.soruVer();
   }
   mesajGoster(mesaj: string, tur: MesajTurleri = null): void {
     if (this.mesajSure) {
@@ -59,9 +62,12 @@ export class GameComponent {
     this.tamamlandi = false;
     this.mevcutSoru = null;
     this.puan = 0;
-    this.sorulariGetir();
-    this.toplamSureGoster();
-    this.mesajGoster("İyi yarışmalar!");
+    this.sorulariGetir().then(response => {
+      this.soruVer();
+      this.toplamSureGoster();
+      this.mesajGoster("İyi yarışmalar!");
+    });
+    
   }
   toplamSureGoster() {
     this.toplamKalanSure = 300;
@@ -73,7 +79,9 @@ export class GameComponent {
     }, 1000);
   }
   cevapSureGoster() {
-    this.kalanSure = 30;
+    if(this.kalanSure !== 30 ){
+      this.kalanSure = 30;
+    }
     this.sure = setInterval(() => {
       this.kalanSure--;
       if (this.kalanSure === 0) {
@@ -116,7 +124,6 @@ export class GameComponent {
     let rastgeleHarfIndex = Math.floor(Math.random() * this.harfler.length);
 
     if (!cevaplandi && this.harfPuan <= 100) {
-      this.harflerVerildi = false;
       return;
     }
 
@@ -128,6 +135,9 @@ export class GameComponent {
     harf.acildi = true;
     if (!cevaplandi) {
       this.harfPuan -= 100;
+      if(this.harfPuan <= 100){
+        this.harflerVerildi = false;
+      }
     }
   }
   cevapVer(): void {
@@ -151,6 +161,7 @@ export class GameComponent {
       if (!this.cevaplandi) {
         this.puan += this.harfPuan;
         this.cevaplandi = true;
+        this.kalanSure = 30;
         this.mesajGoster("Tebrikler, doğru bildiniz!", MesajTurleri.basari);
       }
     } else {
@@ -161,6 +172,7 @@ export class GameComponent {
           this.puan = 0;
         }
         this.cevaplandi = true;
+        this.kalanSure = 30;
         this.mesajGoster(
           `Yanlış cevap, doğrusu '${this.mevcutSoru.cevap}' olmalıydı!`,
           MesajTurleri.hata

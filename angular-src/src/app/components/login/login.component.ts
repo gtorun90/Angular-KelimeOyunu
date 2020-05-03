@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
         this.mesajTur = "success";
         setTimeout(() => {
           this.router.navigate(["/game"]);
-        }, 3000);
+        }, 4000);
       },
       error => {
         this.mesajTur = "error";

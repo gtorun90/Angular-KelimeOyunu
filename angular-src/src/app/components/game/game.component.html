@@ -20,9 +20,36 @@
   </div>
   <ng-template #mevcutSoruYoksa>
     <div class="card">
-      <div class="card-header">
-        <h4 class="mb-0">{{ mevcutSoru.soru }}</h4>       
-        <button class="btn btn-outline-success float-right" (click)="soruVer()" *ngIf="cevaplandi"><span>Sonraki</span></button>
+      <div class="card-header d-flex">
+        <h4 class="mr-4">{{ mevcutSoru.soru }}</h4>
+        <!-- TO DO son soruda soru ver çıkmayacak, soruyu cevapladığında tebrikler bölümü görünebilir. -->
+      </div>
+      <div class="card-header d-flex">
+        <div class="d-flex">
+          <div class="totalSecond">
+            <span>Toplam Süre</span>
+            <div id="countdown">
+              <div id="countdown-number" class="float-right">{{toplamKalanSure}}</div>
+              <svg>
+                <circle id="total" r="18" cx="20" cy="20"></circle>
+              </svg>
+            </div>
+          </div>
+          <div class="mr-4 float-right" *ngIf="!cevaplandi;else emty">
+            <span>Cevap Süresi</span>
+            <div id="countdown">
+              <div id="countdown-number" class="float-right">{{kalanSure}}</div>
+              <svg>
+                <circle id="single" r="18" cx="20" cy="20"></circle>
+              </svg>
+            </div>
+          </div>
+          <div class="mr-2 float-right">
+            <button class="btn btn-info  mr-2 float-right" (click)="soruVer()" *ngIf="cevaplandi"><span> Sonraki Soru
+              </span></button>
+          </div>
+        </div>
+
         <!-- TO DO son soruda soru ver çıkmayacak, soruyu cevapladığında tebrikler bölümü görünebilir. -->
       </div>
       <div class="card-body">
@@ -31,35 +58,29 @@
         </div>
       </div>
       <div class="card-footer">
-        <div class="d-flex">
-          <div class="mr-4">Toplam Puan: {{ puan }}</div>
-          <div class="mr-4">
-            Kalan Cevap Süreniz:
-            <kbd>{{ kalanSure }}</kbd> saniye
-          </div>
-          <div class="mr-4">Kelime Puanı: {{ harfPuan }}</div>
-          <div class="float-right">
-            Kalan Yarışma Süreniz:
-            <kbd>{{ toplamKalanSure }}</kbd> saniye
+        <div class="row">
+          <div class="col-md-4 d-flex">
+            <div class="mr-4">Toplam Puan: {{ puan }}</div>
+            <div class="mr-4">Kelime Puanı: {{ harfPuan }}</div>
           </div>
         </div>
       </div>
       <div class="card-footer">
         <div class="input-group">
-          <input class="form-control" type="text" placeholder="Buraya Yazın" [(ngModel)]="yarismaciCevap"
+          <!-- <div class="input-group-append"> -->
+          <button [disabled]="!harflerVerildi" class="btn btn-danger" (click)="harfVer()">
+            <span>Harf Ver</span>
+          </button>
+          <input class="form-control ml-2 mr-2" type="text" placeholder="Cevapla" [(ngModel)]="yarismaciCevap"
             (keypress)="enterIleCevapVer($event)" (keyup)="yarismaciCevap = yarismaciCevap.toLocaleUpperCase('tr')" />
-          <div class="input-group-append">
-            <button [disabled]="!harflerVerildi" class="btn btn-danger" (click)="harfVer()">
-              <span>Harf Ver</span>
-            </button>
-            <button [disabled]="!yarismaciCevap" (click)="cevapVer()" class="btn btn-success">
-              <span>Cevap Ver</span>
-            </button>
-          </div>
+          <button [disabled]="!yarismaciCevap" (click)="cevapVer()" class="btn btn-success">
+            <span>Cevap Ver</span>
+          </button>
         </div>
+        <!-- </div> -->
       </div>
       <div class="card-footer" [ngClass]="mesajClass" *ngIf="mesaj">
-        <span class="glyphicon glyphicon-ok-circle"></span> {{ mesaj }}
+        <i class="fa fa-fw fa-lg fa-check"></i> {{ mesaj }}
       </div>
     </div>
   </ng-template>
