@@ -12,8 +12,8 @@ export class SoruBankasiService {
   path = environment.path;
 
   getQuestions(): Observable<SoruBankasi[]> {
-    let getUrl = this.path + "game/index";
-   // let getUrl = "game/index";
+   // let getUrl = this.path + "game/index";
+    let getUrl = "game/index";
     return this.http.get<SoruBankasi[]>(getUrl);
   }
   saveQuestion(soruBankasi: SoruBankasi): Observable<SoruBankasi> {
