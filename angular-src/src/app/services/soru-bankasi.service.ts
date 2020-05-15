@@ -22,7 +22,7 @@ export class SoruBankasiService {
     //let postUrl = this.path + "game/saveQuestion";
     let postUrl = "game/saveQuestion";
     return this.http.post<SoruBankasi>(postUrl, soruBankasi, {
-      headers: headers
+      headers: headers 
     });
   }
 }
