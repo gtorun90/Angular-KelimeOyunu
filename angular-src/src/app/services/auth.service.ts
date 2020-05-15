@@ -16,7 +16,7 @@ export class AuthService {
   register(registerUser: RegisterUser): Observable<RegisterUser> {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
-    // let postUrl = this.path + 'user/register'
+    //let postUrl = this.path + 'user/register'
     let postUrl = "user/register";
     return this.http.post<RegisterUser>(postUrl, registerUser, {
       headers: headers

@@ -2,6 +2,7 @@ import { Component,OnInit } from "@angular/core";
 import { SoruBankasi } from "../soru-bankasi/soruBankasi";
 import { error } from "protractor";
 import { SoruBankasiService } from "src/app/services/soru-bankasi.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-game",
@@ -26,7 +27,7 @@ export class GameComponent implements OnInit{
   kalanSure: number = 0;
   toplamKalanSure: number = 0;
   // apiUrl="https://localhost:44341/api/SoruCevaps";
-  constructor(private soruBankasiService: SoruBankasiService) {
+  constructor(private soruBankasiService: SoruBankasiService,private router:Router) {
     //this.basla(); 
   }
   ngOnInit() {
@@ -185,7 +186,9 @@ export class GameComponent implements OnInit{
         this.harfVer(this.cevaplandi);
       }
     });
-
+    setTimeout(() =>{ 
+      this.soruVer();
+    },3000);
     //this.soruVer();
   }
   enterIleCevapVer(event: KeyboardEvent): void {

@@ -44,10 +44,10 @@
               </svg>
             </div>
           </div>
-          <div class="mr-2 float-right">
+          <!-- <div class="mr-2 float-right">
             <button class="btn btn-info  mr-2 float-right" (click)="soruVer()" *ngIf="cevaplandi"><span> Sonraki Soru
               </span></button>
-          </div>
+          </div> -->
         </div>
 
         <!-- TO DO son soruda soru ver çıkmayacak, soruyu cevapladığında tebrikler bölümü görünebilir. -->
@@ -85,3 +85,13 @@
     </div>
   </ng-template>
 </div>
+<nav class="navbar fixed-bottom navbar-light" style="background-color: #4ecdc4;">
+  <span class="navbar-text navbar-nav my-2 my-lg-0 mr-3">
+    <strong>Toplam Puan :</strong>
+    <span class="badge badge-info">{{ puan }}</span>
+  </span>
+  <span class="navbar-text navbar-nav my-2 my-lg-0 mr-3">
+    <strong>Soru Puanı :</strong>
+    <span class="badge badge-info">{{ harfPuan }}</span>
+  </span>
+</nav>
