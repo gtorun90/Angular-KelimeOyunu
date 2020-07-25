@@ -12,7 +12,6 @@ import { AuthInterceptorService } from "./services/auth-interceptor.service";
 import { GameComponent } from './components/game/game.component';
 import { SoruBankasiComponent } from './components/soru-bankasi/soru-bankasi.component';
 import { AuthGuard } from './guards/auth.guard';
-// import {AuthGuard} from "./guards/auth.guard"
 var routes = [
   {path:"",component:LoginComponent,pathMatch:"full"},
   {path:"game",component:GameComponent,canActivate:[AuthGuard]},
