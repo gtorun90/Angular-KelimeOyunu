@@ -6,7 +6,7 @@ import { RegisterUser } from "../components/register/registerUser";
 import { LoginUser } from "../components/login/loginUser";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
@@ -19,15 +19,16 @@ export class AuthService {
     //let postUrl = this.path + 'user/register'
     let postUrl = "user/register";
     return this.http.post<RegisterUser>(postUrl, registerUser, {
-      headers: headers
+      headers,
     });
   }
+
   login(loginUser: LoginUser): Observable<LoginUser> {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
     //let getUrl = this.path + "user/login";
     let getUrl = "user/login";
-    return this.http.post<LoginUser>(getUrl, loginUser, { headers: headers });
+    return this.http.post<LoginUser>(getUrl, loginUser, { headers });
   }
 
   saveToken(token) {

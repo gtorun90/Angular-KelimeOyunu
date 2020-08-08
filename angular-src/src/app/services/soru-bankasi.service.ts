@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class SoruBankasiService {
   constructor(private http: HttpClient) {}
@@ -13,7 +13,7 @@ export class SoruBankasiService {
 
   getQuestions(): Observable<SoruBankasi[]> {
     //let getUrl = this.path + "game/index";
-   let getUrl = "game/index";
+    let getUrl = "game/index";
     return this.http.get<SoruBankasi[]>(getUrl);
   }
   saveQuestion(soruBankasi: SoruBankasi): Observable<SoruBankasi> {
@@ -22,7 +22,7 @@ export class SoruBankasiService {
     //let postUrl = this.path + "game/saveQuestion";
     let postUrl = "game/saveQuestion";
     return this.http.post<SoruBankasi>(postUrl, soruBankasi, {
-      headers: headers 
+      headers,
     });
   }
 }
